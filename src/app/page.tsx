@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 import Test from "../../public/images/test-image-2.png"
+import TestHover from "../../public/images/test-image-3.png"
 
 export default function Home() {
   // Add grid overlay (visible in your design)
@@ -20,15 +21,10 @@ export default function Home() {
             <feTurbulence type="fractalNoise" baseFrequency=".4" numOctaves="3" stitchTiles="stitch"></feTurbulence>
             <feColorMatrix type="saturate" values="0"></feColorMatrix>
             <feComponentTransfer>
-              <feFuncR type="linear" slope="0.5"></feFuncR>
-              <feFuncG type="linear" slope="0.5"></feFuncG>
-              <feFuncB type="linear" slope="0.5"></feFuncB>
+              <feFuncR type="linear" slope="0.5" intercept="0.5"></feFuncR>
+              <feFuncG type="linear" slope="0.5" intercept="0.5"></feFuncG>
+              <feFuncB type="linear" slope="0.5" intercept="0.5"></feFuncB>
               <feFuncA type="linear" slope="1"></feFuncA>
-            </feComponentTransfer>
-            <feComponentTransfer>
-              <feFuncR type="linear" slope="1.75" intercept="-0.38"/>
-              <feFuncG type="linear" slope="1.75" intercept="-0.38"/>
-              <feFuncB type="linear" slope="1.75" intercept="-0.38"/>
             </feComponentTransfer>
           </filter>
           <rect width="100%" height="100%" filter="url(#noise-filter)"></rect>
@@ -103,8 +99,49 @@ export default function Home() {
           
           <div className="project-grid">
             <Link className="project-card" href="/">
-              <Image className="project-image" src={Test} alt="Test">
-              </Image>
+              <div className="project-image-container">
+                <Image className="project-image" src={Test} alt="Project Image" />
+                <Image className="project-image project-image-hover" src={TestHover} alt="Project Image Hover" />
+              </div>
+              <div className="project-info">
+                <div className="project-title-flex">
+                  <p className="project-title">Volta, Internship</p>
+                  <p>400K+ User Growth</p>
+                </div>
+                <p>Product Design, Identity</p>
+              </div>
+            </Link>
+            <Link className="project-card" href="/">
+              <div className="project-image-container">
+                <Image className="project-image" src={Test} alt="Project Image" />
+                <Image className="project-image project-image-hover" src={TestHover} alt="Project Image Hover" />
+              </div>
+              <div className="project-info">
+                <div className="project-title-flex">
+                  <p className="project-title">Volta, Internship</p>
+                  <p>400K+ User Growth</p>
+                </div>
+                <p>Product Design, Identity</p>
+              </div>
+            </Link>
+            <Link className="project-card" href="/">
+              <div className="project-image-container">
+                <Image className="project-image" src={Test} alt="Project Image" />
+                <Image className="project-image project-image-hover" src={TestHover} alt="Project Image Hover" />
+              </div>
+              <div className="project-info">
+                <div className="project-title-flex">
+                  <p className="project-title">Volta, Internship</p>
+                  <p>400K+ User Growth</p>
+                </div>
+                <p>Product Design, Identity</p>
+              </div>
+            </Link>
+            <Link className="project-card" href="/">
+              <div className="project-image-container">
+                <Image className="project-image" src={Test} alt="Project Image" />
+                <Image className="project-image project-image-hover" src={TestHover} alt="Project Image Hover" />
+              </div>
               <div className="project-info">
                 <div className="project-title-flex">
                   <p className="project-title">Volta, Internship</p>
