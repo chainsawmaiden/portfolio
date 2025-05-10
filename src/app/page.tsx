@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-import Test from "../../public/images/test-image.png"
+import Test from "../../public/images/test-image-2.png"
 
 export default function Home() {
   // Add grid overlay (visible in your design)
@@ -12,7 +12,30 @@ export default function Home() {
 
   return (
     <main className="page">
-      {/* Grid overlay - the blue vertical lines */}
+
+      {/* NOISE SVG OVERLAY */}
+      <div className="noise-overlay">
+        <svg id="noise" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+          <filter id="noise-filter">
+            <feTurbulence type="fractalNoise" baseFrequency=".4" numOctaves="3" stitchTiles="stitch"></feTurbulence>
+            <feColorMatrix type="saturate" values="0"></feColorMatrix>
+            <feComponentTransfer>
+              <feFuncR type="linear" slope="0.5"></feFuncR>
+              <feFuncG type="linear" slope="0.5"></feFuncG>
+              <feFuncB type="linear" slope="0.5"></feFuncB>
+              <feFuncA type="linear" slope="1"></feFuncA>
+            </feComponentTransfer>
+            <feComponentTransfer>
+              <feFuncR type="linear" slope="1.75" intercept="-0.38"/>
+              <feFuncG type="linear" slope="1.75" intercept="-0.38"/>
+              <feFuncB type="linear" slope="1.75" intercept="-0.38"/>
+            </feComponentTransfer>
+          </filter>
+          <rect width="100%" height="100%" filter="url(#noise-filter)"></rect>
+        </svg>
+      </div>
+
+      {/* Grid overlay - debug */}
       {showGridOverlay && (
         <div className="grid-overlay">
           {Array(12).fill(0).map((_, i) => (
@@ -21,7 +44,7 @@ export default function Home() {
         </div>
       )}
 
-      {/* Top navigation */}
+      {/* NAVBAR */}
       <nav>
         <Link href="/" className="nav-link">Home</Link>
         <Link href="/product" className="nav-link">Product</Link>
@@ -30,9 +53,10 @@ export default function Home() {
         <Link href="/contact" className="nav-link">Contact</Link>
       </nav>
 
-      {/* Main content container */}
+      {/* HERO CONTENT */}
       <div className="hero">
-        {/* Introduction section */}
+
+        {/* INTRODUCTION */}
         <section className="intro-section">
           <div className="intro-content">
             <div className="intro-header">
@@ -69,7 +93,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Projects section */}
+        {/* PROJECTS */}
         <section className="projects-section">
           <div className="projects-section-header">
             <h2 className="projects-section-header-left">01</h2>

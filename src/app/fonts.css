@@ -1,14 +1,17 @@
+/* @import url("https://use.typekit.net/etj1gqn.css"); */
+
+
 @font-face {
   font-family: 'HelveticaNowDisplay';
   src: url('/fonts/HelveticaNowDisplay-Regular.otf') format('opentype');
-  font-weight: 400; /* Regular */
+  font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'HelveticaNowDisplay';
   src: url('/fonts/HelveticaNowDisplay-Medium.otf') format('opentype');
-  font-weight: 500; /* Medium */
+  font-weight: 500;
   font-style: normal;
 }
 
