@@ -250,11 +250,11 @@ nav {
 .projects-section {
   background-color: var(--white-50);
   border-radius: 32px;
-  margin: 0px 16px 64px 16px;
+  margin: 0px 16px 1200px 16px;
   padding: 24px 32px 32px 32px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 16px; 
   overflow: hidden;
   position: relative;
   z-index: 2; /* Higher z-index to appear above intro section */
