@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -10,6 +10,56 @@ import TestHover from "../../public/images/test-image-3.png"
 export default function Home() {
   // Add grid overlay (visible in your design)
   const showGridOverlay = false;
+  
+  // Refs for scroll animation
+  const introSectionRef = useRef<HTMLElement>(null);
+  const projectsSectionRef = useRef<HTMLElement>(null);
+  
+  // Set up scroll effect
+  useEffect(() => {
+    // Function to handle scroll
+    const handleScroll = () => {
+      if (introSectionRef.current) {
+        const scrollY = window.scrollY;
+        const fadeStartAt = 1; // Start fading out at 1px of scroll
+        const fadeEndAt = 450; // Completely faded out by 350px of scroll
+        
+        if (scrollY > fadeStartAt) {
+          const opacity = Math.max(0, 1 - (scrollY - fadeStartAt) / (fadeEndAt - fadeStartAt));
+          const blurValue = 4 * (1 - opacity); // Max 4px blur when opacity is 0
+
+          const scroll = Math.max(0, scrollY - fadeStartAt);
+          
+          introSectionRef.current.style.opacity = opacity.toString();
+          introSectionRef.current.style.filter = `blur(${blurValue}px)`;
+          introSectionRef.current.style.transform = `translate(0px, -${scroll * .125}px)`;
+          
+          if (scrollY > fadeEndAt) {
+            introSectionRef.current.classList.add('intro-fade-out');
+          } else {
+            introSectionRef.current.classList.remove('intro-fade-out');
+          }
+        } else {
+          // Reset styles when back at top
+          introSectionRef.current.style.opacity = '1';
+          introSectionRef.current.style.filter = 'blur(0px)';
+          introSectionRef.current.style.transform = `translate(0px, 0px)`;
+          introSectionRef.current.classList.remove('intro-fade-out');
+        }
+      }
+    };
+    
+    // Add scroll event listener
+    window.addEventListener('scroll', handleScroll);
+    
+    // Initial call to set correct state
+    handleScroll();
+    
+    // Cleanup
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
     <main className="page">
@@ -42,6 +92,7 @@ export default function Home() {
 
       {/* NAVBAR */}
       <nav>
+        
         <Link href="/" className="nav-link">Home</Link>
         <Link href="/product" className="nav-link">Product</Link>
         <Link href="/craft" className="nav-link">Craft</Link>
@@ -53,10 +104,10 @@ export default function Home() {
       <div className="hero">
 
         {/* INTRODUCTION */}
-        <section className="intro-section">
+        <section ref={introSectionRef} className="intro-section">
           <div className="intro-content">
             <div className="intro-header">
-              <h1>Aditya Das is a multidisciplinary designer and engineer who builds interfaces, websites, brand identities, and more. He is  dreaming of a world filled with delight and magic, where all things are created with love. ❀</h1>
+              <h1>❀ Aditya Das is a multidisciplinary designer and engineer who builds interfaces, websites, brand identities, and more. He is dreaming of a world filled with delight and magic, where all things are created with love.</h1>
               
               <h1>Currently leading design at Biography. Previously at Sony and Volta. Studying Art and Math at Yale.</h1>
             </div>
@@ -85,12 +136,11 @@ export default function Home() {
                 </div>
               </div>
             </div>
-
           </div>
         </section>
 
         {/* PROJECTS */}
-        <section className="projects-section">
+        <section ref={projectsSectionRef} className="projects-section">
           <div className="projects-section-header">
             <h2 className="projects-section-header-left">01</h2>
             <h2 className="projects-section-header-center">Product</h2>
@@ -150,11 +200,7 @@ export default function Home() {
                 <p>Product Design, Identity</p>
               </div>
             </Link>
-
           </div>
-
-          
-
         </section>
       </div>
     </main>
