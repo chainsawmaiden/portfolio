@@ -17,6 +17,9 @@
   --black-50: #0D0C0C;
   --black-100: #424141;
   --max-width: 1512px;
+  --grid-start: 4;
+  --grid-span-center: 6;
+  --grid-span-side: 3;
 }
 
 html, body {
@@ -154,8 +157,7 @@ nav {
 }
 
 .intro-content {
-  grid-column-start: 4;
-  grid-column-end: 10;
+  grid-column: var(--grid-start) / span var(--grid-span-center);
   display: flex;
   flex-direction: column;
   gap: 48px;
@@ -196,6 +198,7 @@ nav {
   flex-direction: column;
   gap: 24px;
   overflow: hidden;
+  margin-bottom: 64px;
 }
 
 .projects-section-header {
@@ -207,17 +210,16 @@ nav {
 }
 
 .projects-section-header-left {
-  grid-column-start: 1;
-  grid-column-end: 4;
+  grid-column: span var(--grid-span-side);
   padding-left: 32px;
 }
 
 .projects-section-header-center {
-  grid-column: span 6;
+  grid-column: span var(--grid-span-center);
 }
 
 .projects-section-header-right {
-  grid-column: span 3;
+  grid-column: span var(--grid-span-side);
   text-align: end;
   margin-right: 32px;
 }
@@ -260,3 +262,10 @@ nav {
   color: var(--black-50)
 }
 
+@media (max-width: 1200px) { 
+  :root {
+    --grid-start: 3;
+    --grid-span-center: 8;
+    --grid-span-side: 2;
+  }
+}
