@@ -1,42 +1,262 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* ===================================
+1. Default Styles
+=================================== */
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
-  padding: 0;
   margin: 0;
+  padding: 0;
+}
+
+:root {
+  --white-50: #F8F7F7;
+  --white-100: #F0EFEF;
+  --white-200: #ECE8E7;
+  --black-50: #0D0C0C;
+  --black-100: #424141;
+  --max-width: 1512px;
+}
+
+html, body {
+  min-height: 100%;
+  width: 100%;
+  background: linear-gradient(0deg,rgba(81, 157, 219, 1) 0%, rgba(55, 59, 194, 1) 100%);
+  color: var(--white-50);
+  font-family: 'HelveticaNowDisplay', serif;
+  font-size: 13px;
+  line-height: 1.4;
+  letter-spacing: .12px;
+  scroll-behavior: smooth; /* For smooth scrolling to anchors */
+  z-index: 1;
+  font-weight: 400;
 }
 
 a {
   color: inherit;
   text-decoration: none;
+  transition: opacity 0.3s ease;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+a:hover {
+  opacity: 0.8;
 }
+
+h1 {
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -.16px;
+}
+
+h2 {
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -.16px;
+}
+
+h3 {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0px;
+}
+
+.stacked {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+}
+
+/* ===================================
+  2. General Layout
+  =================================== */
+.page {
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+  max-width: var(--max-width);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Navbar */
+nav {
+  position: sticky;
+  left: 0;
+  margin: 0px auto;
+  top: 32px;
+  padding: 16px 32px;
+  width: fit-content;
+  z-index: 100;
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+  background-color: rgba(248, 248, 248, 0.95);
+  backdrop-filter: blur(16px);
+  border-radius: 1000px;
+}
+
+.nav-link {
+  color: var(--black-100);
+}
+
+/* Main Content */
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0px;
+  width: 100%;
+  margin-top: 108px;
+}
+
+/* ===================================
+  3. Grid Overlay - debug
+  =================================== */
+  .grid-overlay {
+    position: fixed;
+    width: 100%;
+    max-width: var(--max-width);
+    
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%);
+
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 16px;
+    
+    padding: 0 48px;
+    pointer-events: none;
+    z-index: 1;
+  }
+  
+  .grid-line {
+    height: 100%;
+    border-left: 1px solid rgba(255, 0, 0, 0.2);
+    border-right: 1px solid rgba(255, 0, 0, 0.2);
+  }
+  
+
+/* ===================================
+  4. Hero Intro
+  =================================== */
+.intro-section {
+  margin: 0px 48px 96px 48px;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 16px;
+}
+
+.intro-content {
+  grid-column-start: 4;
+  grid-column-end: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.intro-header {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.intro-list-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.intro-list-stacked {
+  gap: 6px;
+}
+
+.intro-list-items {
+  color: var(--white-200)
+}
+
+
+/* ===================================
+  5. Project sections
+  =================================== */
+
+.projects-section {
+  background-color: var(--white-50);
+  border-radius: 32px;
+  margin: 0px 16px 0px 16px;
+  padding: 24px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  overflow: hidden;
+}
+
+.projects-section-header {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 16px;
+  width: 100%;
+  color: var(--black-50);
+}
+
+.projects-section-header-left {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  padding-left: 32px;
+}
+
+.projects-section-header-center {
+  grid-column: span 6;
+}
+
+.projects-section-header-right {
+  grid-column: span 3;
+  text-align: end;
+  margin-right: 32px;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.project-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+  overflow: hidden;
+  background-color: var(--white-100);
+  color: var(--black-100);
+}
+
+.project-image {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+}
+
+.project-info {
+  padding: 8px 16px 8px 16px;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.project-title-flex {
+  display: flex;
+  gap: 24px;
+}
+
+.project-title {
+  color: var(--black-50)
+}
+
