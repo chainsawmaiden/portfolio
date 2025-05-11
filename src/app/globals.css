@@ -152,17 +152,6 @@ nav {
   opacity: 1;
 }
 
-/* Main Content */
-.hero {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0px;
-  width: 100%;
-  margin-top: 108px;
-}
-
 /* ===================================
   3. Grid Overlay - debug
   =================================== */
@@ -195,6 +184,19 @@ nav {
 /* ===================================
   4. Hero Intro
   =================================== */
+
+/* Main Content */
+.hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  gap: 0px;
+  width: 100%;
+  margin-top: 108px;
+}
+
+
 .intro-section {
   margin: 0px 48px 96px 48px;
   display: grid;

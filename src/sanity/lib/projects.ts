@@ -81,8 +81,7 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
       additionalInfo,
       mainImage,
       hoverImage,
-      order,
-      description
+      order
     }
   `, { slug })
   

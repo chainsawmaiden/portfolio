@@ -84,13 +84,6 @@ export default defineType({
       type: 'number',
       initialValue: 999,
     }),
-    defineField({
-      name: 'description',
-      title: 'Description',
-      description: 'Full description for the project page',
-      type: 'array',
-      of: [{ type: 'block' }]
-    }),
   ],
   preview: {
     select: {
@@ -100,9 +93,11 @@ export default defineType({
     },
     prepare(selection) {
       const { title, type } = selection
+      // Handle the case where type might be null or undefined
+      const typePrefix = type ? type.charAt(0).toUpperCase() + type.slice(1) : 'Project'
       return {
         ...selection,
-        subtitle: type.charAt(0).toUpperCase() + type.slice(1)
+        subtitle: typePrefix
       }
     }
   }
