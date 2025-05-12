@@ -1,13 +1,15 @@
 import Link from "next/link";
-import { getProjectsByType, Project } from "@/sanity/lib/projects";
+import { getProjectsByType } from "@/sanity/lib/projects";
+
+//debug
+//import Image from "next/image";
+//import Test from "../../public/images/test-image-2.png"
+//import TestHover from "../../public/images/test-image-3.png"
 
 // Custom Components
 import ProjectCard from "@/components/ProjectCard";
 import ProjectsList from "@/components/ProjectsList";
 import HomeAnimation from "@/components/HomeAnimation";
-
-// Import our new CSS module if needed
-// import styles from './projects.module.css';
 
 export default async function Home() {
   // Fetch projects from Sanity
@@ -70,13 +72,13 @@ export default async function Home() {
 
             <div className="intro-list-container">
               <ProjectsList 
-                title="Product ✿"
+                title="Product"
                 projects={productProjects}
                 type="product"
               />
 
               <ProjectsList 
-                title="Craft ❁"
+                title="Craft"
                 projects={craftProjects}
                 type="craft"
               />
@@ -85,16 +87,29 @@ export default async function Home() {
         </section>
 
         {/* PROJECTS */}
-        <section id="projects-section" className="projects-section">
+        <section className="projects-section">
           <div className="projects-section-header">
             <h2 className="projects-section-header-left">01</h2>
             <h2 className="projects-section-header-center">Product</h2>
             <h2 className="projects-section-header-right">✿</h2>
           </div>
           
-          {/* Use the project grid with natural aspect ratios */}
           <div className="project-grid">
             {productProjects.map(project => (
+              <ProjectCard key={project._id} project={project} />
+            ))}
+          </div>
+        </section>
+
+        <section className="projects-section">
+          <div className="projects-section-header">
+            <h2 className="projects-section-header-left">02</h2>
+            <h2 className="projects-section-header-center">Craft</h2>
+            <h2 className="projects-section-header-right">❁</h2>
+          </div>
+          
+          <div className="project-grid three-columns">
+            {craftProjects.map(project => (
               <ProjectCard key={project._id} project={project} />
             ))}
           </div>

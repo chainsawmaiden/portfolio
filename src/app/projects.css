@@ -1,0 +1,167 @@
+/* ===================================
+1. Projects Section
+=================================== */
+
+.projects-section {
+  background-color: var(--white-50);
+  border-radius: 32px;
+  margin: 0px 16px 144px 16px;
+  padding: 24px 32px 32px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px; 
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+}
+
+.projects-section-header {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 16px;
+  width: 100%;
+  color: var(--black-50);
+}
+
+.projects-section-header-left {
+  grid-column: span var(--grid-span-side);
+  padding-left: 32px;
+}
+
+.projects-section-header-center {
+  grid-column: span var(--grid-span-center);
+}
+
+.projects-section-header-right {
+  grid-column: span var(--grid-span-side);
+  text-align: end;
+  margin-right: 32px;
+}
+
+/* ===================================
+2. Project Grid & Cards
+=================================== */
+
+.project-grid {
+  column-count: 2;
+  column-gap: 16px;
+}
+
+.three-columns {
+  column-count: 3;
+}
+
+.project-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+  overflow: hidden;
+  background-color: var(--white-100);
+  color: var(--black-100);
+  height: auto;
+  align-self: start;
+  margin-bottom: 16px;
+}
+
+.project-card:hover {
+  opacity: 1;
+}
+
+.project-info {
+  padding: 8px 16px 8px 16px;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.project-title-flex {
+  display: flex;
+  gap: 24px;
+}
+
+.project-title {
+  color: var(--black-50);
+}
+
+/* ===================================
+3. Project Media
+=================================== */
+
+.project-image-container {
+  position: relative;
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  transform-origin: center;
+  transition: transform 0.3s ease-out;
+}
+
+/* Image styles */
+.project-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 16px;
+}
+
+.project-image-hover {
+  opacity: 0;
+  transition: opacity 0.4s ease-out;
+}
+
+.project-card:hover .project-image-hover {
+  opacity: 1;
+}
+
+/* Self-hosted video container styles */
+.project-video {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.project-video-player {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+.project-video-player-hover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.4s ease-out;
+}
+
+.project-card:hover .project-video-player-hover {
+  opacity: 1;
+}
+
+/* Video container with pointer-events disabled */
+.video-container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+/* Additional hover effect for project cards */
+.project-card:hover .project-image-container {
+  transform: scale(0.975);
+}

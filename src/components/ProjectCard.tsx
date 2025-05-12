@@ -7,7 +7,7 @@ import SelfHostedVideo from "./SelfHostedVideo";
 import { useState, useRef, useEffect } from "react";
 import { urlFor } from "@/sanity/lib/image";
 
-// Make sure this matches exactly with the Project type from projects.ts
+// Must match project card type from sanity/lib/projects.ts
 interface ProjectCardProps {
   project: {
     _id: string;

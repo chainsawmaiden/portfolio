@@ -1,6 +1,6 @@
 import "./globals.css";
+import "./projects.css";
 import "./fonts.css";
-import "./simple-fade.css";
 
 import type { Metadata } from "next";
 
