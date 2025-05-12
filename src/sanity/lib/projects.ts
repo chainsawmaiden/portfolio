@@ -11,8 +11,24 @@ export interface Project {
   projectType: 'product' | 'craft'
   skills: string
   additionalInfo?: string
-  mainImage: any
-  hoverImage: any
+  // Legacy fields
+  mainImage?: any
+  hoverImage?: any
+  // New media fields
+  mainMedia?: {
+    mediaType: 'image' | 'youtube'
+    image?: any
+    youtubeUrl?: string
+    youtubeStart?: number
+    youtubeEnd?: number
+  }
+  hoverMedia?: {
+    mediaType: 'image' | 'youtube'
+    image?: any
+    youtubeUrl?: string
+    youtubeStart?: number
+    youtubeEnd?: number
+  }
   order: number
   mainImageUrl?: string
   hoverImageUrl?: string
@@ -31,16 +47,26 @@ export async function getAllProjects(): Promise<Project[]> {
       additionalInfo,
       mainImage,
       hoverImage,
+      mainMedia,
+      hoverMedia,
       order
     }
   `)
   
-  // Add image URLs for easier consumption in React components
-  return projects.map(project => ({
-    ...project,
-    mainImageUrl: urlFor(project.mainImage).url(),
-    hoverImageUrl: urlFor(project.hoverImage).url()
-  }))
+  // Process URLs for legacy images (if present)
+  return projects.map(project => {
+    const enhancedProject = { ...project };
+    
+    // Add image URLs for legacy fields if they exist
+    if (project.mainImage) {
+      enhancedProject.mainImageUrl = urlFor(project.mainImage).url();
+    }
+    if (project.hoverImage) {
+      enhancedProject.hoverImageUrl = urlFor(project.hoverImage).url();
+    }
+    
+    return enhancedProject;
+  });
 }
 
 // Fetch projects by type (product or craft)
@@ -56,16 +82,26 @@ export async function getProjectsByType(type: 'product' | 'craft'): Promise<Proj
       additionalInfo,
       mainImage,
       hoverImage,
+      mainMedia,
+      hoverMedia,
       order
     }
   `, { type })
   
-  // Add image URLs for easier consumption in React components
-  return projects.map(project => ({
-    ...project,
-    mainImageUrl: urlFor(project.mainImage).url(),
-    hoverImageUrl: urlFor(project.hoverImage).url()
-  }))
+  // Process URLs for legacy images (if present)
+  return projects.map(project => {
+    const enhancedProject = { ...project };
+    
+    // Add image URLs for legacy fields if they exist
+    if (project.mainImage) {
+      enhancedProject.mainImageUrl = urlFor(project.mainImage).url();
+    }
+    if (project.hoverImage) {
+      enhancedProject.hoverImageUrl = urlFor(project.hoverImage).url();
+    }
+    
+    return enhancedProject;
+  });
 }
 
 // Fetch a single project by slug
@@ -81,6 +117,8 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
       additionalInfo,
       mainImage,
       hoverImage,
+      mainMedia,
+      hoverMedia,
       order
     }
   `, { slug })
@@ -89,10 +127,16 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
     return null
   }
   
-  const project = projects[0]
-  return {
-    ...project,
-    mainImageUrl: urlFor(project.mainImage).url(),
-    hoverImageUrl: urlFor(project.hoverImage).url()
+  const project = projects[0];
+  const enhancedProject = { ...project };
+  
+  // Add image URLs for legacy fields if they exist
+  if (project.mainImage) {
+    enhancedProject.mainImageUrl = urlFor(project.mainImage).url();
   }
+  if (project.hoverImage) {
+    enhancedProject.hoverImageUrl = urlFor(project.hoverImage).url();
+  }
+  
+  return enhancedProject;
 }

@@ -1,0 +1,14 @@
+/* Super simple fade-in animation */
+@keyframes simpleFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Apply to specific elements only */
+nav {
+  animation: simpleFadeIn 1s ease-out;
+}
+
+.hero {
+  animation: simpleFadeIn 1.5s ease-out;
+}

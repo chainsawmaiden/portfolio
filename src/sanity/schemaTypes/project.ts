@@ -57,25 +57,134 @@ export default defineType({
       description: 'Optional additional info (e.g., "400K+ User Growth" or "$1M funding raised")',
       type: 'string',
     }),
+    // Main media - can be either image or YouTube
+    defineField({
+      name: 'mainMedia',
+      title: 'Main Media',
+      description: 'The primary media (image or video) shown on the project card',
+      type: 'object',
+      fields: [
+        defineField({
+          name: 'mediaType',
+          title: 'Media Type',
+          type: 'string',
+          options: {
+            list: [
+              { title: 'Image', value: 'image' },
+              { title: 'YouTube Video', value: 'youtube' }
+            ],
+          },
+          validation: Rule => Rule.required()
+        }),
+        defineField({
+          name: 'image',
+          title: 'Image',
+          type: 'image',
+          options: {
+            hotspot: true,
+            storeOriginalFilename: true,
+          },
+          hidden: ({ parent }) => parent?.mediaType !== 'image'
+        }),
+        defineField({
+          name: 'youtubeUrl',
+          title: 'YouTube URL',
+          description: 'URL of the YouTube video (e.g., https://www.youtube.com/watch?v=XXXXXXXXXXX)',
+          type: 'url',
+          hidden: ({ parent }) => parent?.mediaType !== 'youtube'
+        }),
+        defineField({
+          name: 'youtubeStart',
+          title: 'Start Time (seconds)',
+          description: 'Time to start the video (in seconds)',
+          type: 'number',
+          hidden: ({ parent }) => parent?.mediaType !== 'youtube',
+          initialValue: 0
+        }),
+        defineField({
+          name: 'youtubeEnd',
+          title: 'End Time (seconds)',
+          description: 'Time to end the video (in seconds)',
+          type: 'number',
+          hidden: ({ parent }) => parent?.mediaType !== 'youtube'
+        }),
+      ]
+    }),
+    // Hover media - can be either image or YouTube
+    defineField({
+      name: 'hoverMedia',
+      title: 'Hover Media',
+      description: 'The media (image or video) shown when hovering over the project card',
+      type: 'object',
+      fields: [
+        defineField({
+          name: 'mediaType',
+          title: 'Media Type',
+          type: 'string',
+          options: {
+            list: [
+              { title: 'Image', value: 'image' },
+              { title: 'YouTube Video', value: 'youtube' }
+            ],
+          },
+          validation: Rule => Rule.required()
+        }),
+        defineField({
+          name: 'image',
+          title: 'Image',
+          type: 'image',
+          options: {
+            hotspot: true,
+            storeOriginalFilename: true,
+          },
+          hidden: ({ parent }) => parent?.mediaType !== 'image'
+        }),
+        defineField({
+          name: 'youtubeUrl',
+          title: 'YouTube URL',
+          description: 'URL of the YouTube video (e.g., https://www.youtube.com/watch?v=XXXXXXXXXXX)',
+          type: 'url',
+          hidden: ({ parent }) => parent?.mediaType !== 'youtube'
+        }),
+        defineField({
+          name: 'youtubeStart',
+          title: 'Start Time (seconds)',
+          description: 'Time to start the video (in seconds)',
+          type: 'number',
+          hidden: ({ parent }) => parent?.mediaType !== 'youtube',
+          initialValue: 0
+        }),
+        defineField({
+          name: 'youtubeEnd',
+          title: 'End Time (seconds)',
+          description: 'Time to end the video (in seconds)',
+          type: 'number',
+          hidden: ({ parent }) => parent?.mediaType !== 'youtube'
+        }),
+      ]
+    }),
+    // Keep the original fields for backwards compatibility
     defineField({
       name: 'mainImage',
-      title: 'Main Image',
-      description: 'The primary image shown on the project card',
+      title: 'Main Image (Legacy)',
+      description: 'Legacy field - please use Main Media instead',
       type: 'image',
       options: {
         hotspot: true,
+        storeOriginalFilename: true,
       },
-      validation: Rule => Rule.required()
+      hidden: true
     }),
     defineField({
       name: 'hoverImage',
-      title: 'Hover Image',
-      description: 'The image shown when hovering over the project card',
+      title: 'Hover Image (Legacy)',
+      description: 'Legacy field - please use Hover Media instead',
       type: 'image',
       options: {
         hotspot: true,
+        storeOriginalFilename: true,
       },
-      validation: Rule => Rule.required()
+      hidden: true
     }),
     defineField({
       name: 'order',
@@ -89,15 +198,16 @@ export default defineType({
     select: {
       title: 'title',
       type: 'projectType',
-      media: 'mainImage'
+      media: 'mainMedia.image'
     },
     prepare(selection) {
-      const { title, type } = selection
+      const { title, type, media } = selection
       // Handle the case where type might be null or undefined
       const typePrefix = type ? type.charAt(0).toUpperCase() + type.slice(1) : 'Project'
       return {
-        ...selection,
-        subtitle: typePrefix
+        title,
+        subtitle: typePrefix,
+        media: media
       }
     }
   }

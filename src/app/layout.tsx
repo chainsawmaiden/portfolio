@@ -1,10 +1,11 @@
 import "./globals.css";
 import "./fonts.css";
+import "./simple-fade.css";
 
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Aditya Das | Designer & Engineer",
+  title: "Aditya Das",
   description: "Portfolio of Aditya Das, a multidisciplinary designer and engineer",
 };
 
