@@ -1,10 +1,10 @@
-"use client"
+'use client';
 
 import Link from "next/link";
 import Image from "next/image";
 import { Project } from "@/sanity/lib/projects";
-import YouTubeEmbed from "./YouTubeEmbed";
-import { useEffect, useState } from "react";
+import SelfHostedVideo from "./SelfHostedVideo";
+import { useState } from "react";
 import { urlFor } from "@/sanity/lib/image";
 
 interface ProjectCardProps {
@@ -33,16 +33,17 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             className={`project-image ${!isMain ? 'project-image-hover' : ''}`}
             src={imageUrl}
             alt={isMain ? project.title : `${project.title} hover`}
-            width={600}
-            height={400}
+            fill={true}
+            sizes="(max-width: 768px) 100vw, 50vw"
             priority={isMain}
+            style={{ objectFit: 'cover' }}
           />
         );
       }
       return null;
     }
     
-    // Handle new media types
+    // Handle media types
     if (media.mediaType === 'image' && media.image) {
       const imageUrl = urlFor(media.image).url();
       return (
@@ -50,22 +51,22 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           className={`project-image ${!isMain ? 'project-image-hover' : ''}`}
           src={imageUrl}
           alt={isMain ? project.title : `${project.title} hover`}
-          width={600}
-          height={400}
+          fill={true}
+          sizes="(max-width: 768px) 100vw, 50vw"
           priority={isMain}
+          style={{ objectFit: 'cover' }}
         />
       );
-    } else if (media.mediaType === 'youtube' && media.youtubeUrl) {
+    } else if (media.mediaType === 'video' && media.videoUrl) {
+      // Get poster image if available
+      const posterUrl = media.videoPoster ? urlFor(media.videoPoster).url() : undefined;
+      
       return (
         <div className={`project-video ${!isMain ? 'project-video-hover' : ''}`}>
-          <YouTubeEmbed
-            url={media.youtubeUrl}
-            start={media.youtubeStart || 0}
-            end={media.youtubeEnd}
-            playing={isMain || isHovering}
-            muted={true}
-            controls={false}
-            loop={true}
+          <SelfHostedVideo
+            src={media.videoUrl}
+            posterImage={posterUrl}
+            className={`project-video-player ${!isMain ? 'project-video-player-hover' : ''}`}
           />
         </div>
       );

@@ -57,7 +57,7 @@ export default defineType({
       description: 'Optional additional info (e.g., "400K+ User Growth" or "$1M funding raised")',
       type: 'string',
     }),
-    // Main media - can be either image or YouTube
+    // Main media - can be either image, youtube, or self-hosted video
     defineField({
       name: 'mainMedia',
       title: 'Main Media',
@@ -71,7 +71,8 @@ export default defineType({
           options: {
             list: [
               { title: 'Image', value: 'image' },
-              { title: 'YouTube Video', value: 'youtube' }
+              { title: 'YouTube Video', value: 'youtube' },
+              { title: 'Self-Hosted Video', value: 'video' }
             ],
           },
           validation: Rule => Rule.required()
@@ -108,9 +109,26 @@ export default defineType({
           type: 'number',
           hidden: ({ parent }) => parent?.mediaType !== 'youtube'
         }),
+        defineField({
+          name: 'videoUrl',
+          title: 'Video URL',
+          description: 'Path to the self-hosted video file (e.g., /videos/project-video.mp4)',
+          type: 'string',
+          hidden: ({ parent }) => parent?.mediaType !== 'video'
+        }),
+        defineField({
+          name: 'videoPoster',
+          title: 'Video Poster Image',
+          description: 'Optional poster image to show before the video loads',
+          type: 'image',
+          options: {
+            hotspot: true,
+          },
+          hidden: ({ parent }) => parent?.mediaType !== 'video'
+        }),
       ]
     }),
-    // Hover media - can be either image or YouTube
+    // Hover media - can be either image, youtube, or self-hosted video
     defineField({
       name: 'hoverMedia',
       title: 'Hover Media',
@@ -124,7 +142,8 @@ export default defineType({
           options: {
             list: [
               { title: 'Image', value: 'image' },
-              { title: 'YouTube Video', value: 'youtube' }
+              { title: 'YouTube Video', value: 'youtube' },
+              { title: 'Self-Hosted Video', value: 'video' }
             ],
           },
           validation: Rule => Rule.required()
@@ -160,6 +179,23 @@ export default defineType({
           description: 'Time to end the video (in seconds)',
           type: 'number',
           hidden: ({ parent }) => parent?.mediaType !== 'youtube'
+        }),
+        defineField({
+          name: 'videoUrl',
+          title: 'Video URL',
+          description: 'Path to the self-hosted video file (e.g., /videos/project-video.mp4)',
+          type: 'string',
+          hidden: ({ parent }) => parent?.mediaType !== 'video'
+        }),
+        defineField({
+          name: 'videoPoster',
+          title: 'Video Poster Image',
+          description: 'Optional poster image to show before the video loads',
+          type: 'image',
+          options: {
+            hotspot: true,
+          },
+          hidden: ({ parent }) => parent?.mediaType !== 'video'
         }),
       ]
     }),

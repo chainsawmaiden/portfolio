@@ -14,20 +14,18 @@ export interface Project {
   // Legacy fields
   mainImage?: any
   hoverImage?: any
-  // New media fields
+  // Media fields
   mainMedia?: {
-    mediaType: 'image' | 'youtube'
+    mediaType: 'image' | 'video'
     image?: any
-    youtubeUrl?: string
-    youtubeStart?: number
-    youtubeEnd?: number
+    videoUrl?: string
+    videoPoster?: any
   }
   hoverMedia?: {
-    mediaType: 'image' | 'youtube'
+    mediaType: 'image' | 'video'
     image?: any
-    youtubeUrl?: string
-    youtubeStart?: number
-    youtubeEnd?: number
+    videoUrl?: string
+    videoPoster?: any
   }
   order: number
   mainImageUrl?: string
