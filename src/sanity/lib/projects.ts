@@ -2,34 +2,40 @@
 import { client } from './client'
 import { urlFor } from './image'
 
-// Define project type interface
+// Define project type interface - make sure this is exported
 export interface Project {
-  _id: string
-  title: string
-  listTitle: string
-  slug: { current: string }
-  projectType: 'product' | 'craft'
-  skills: string
-  additionalInfo?: string
+  _id: string;
+  title: string;
+  listTitle: string;
+  slug: { current: string };
+  projectType: 'product' | 'craft';
+  skills: string;
+  additionalInfo?: string;
   // Legacy fields
-  mainImage?: any
-  hoverImage?: any
+  mainImage?: any;
+  hoverImage?: any;
   // Media fields
   mainMedia?: {
-    mediaType: 'image' | 'video'
-    image?: any
-    videoUrl?: string
-    videoPoster?: any
-  }
+    mediaType: 'image' | 'video' | 'youtube';
+    image?: any;
+    videoUrl?: string;
+    videoPoster?: any;
+    youtubeUrl?: string;
+    youtubeStart?: number;
+    youtubeEnd?: number;
+  };
   hoverMedia?: {
-    mediaType: 'image' | 'video'
-    image?: any
-    videoUrl?: string
-    videoPoster?: any
-  }
-  order: number
-  mainImageUrl?: string
-  hoverImageUrl?: string
+    mediaType: 'image' | 'video' | 'youtube';
+    image?: any;
+    videoUrl?: string;
+    videoPoster?: any;
+    youtubeUrl?: string;
+    youtubeStart?: number;
+    youtubeEnd?: number;
+  };
+  order: number;
+  mainImageUrl?: string;
+  hoverImageUrl?: string;
 }
 
 // Fetch all projects

@@ -1,15 +1,13 @@
 import Link from "next/link";
-import { getProjectsByType } from "@/sanity/lib/projects";
-
-//debug
-//import Image from "next/image";
-//import Test from "../../public/images/test-image-2.png"
-//import TestHover from "../../public/images/test-image-3.png"
+import { getProjectsByType, Project } from "@/sanity/lib/projects";
 
 // Custom Components
 import ProjectCard from "@/components/ProjectCard";
 import ProjectsList from "@/components/ProjectsList";
 import HomeAnimation from "@/components/HomeAnimation";
+
+// Import our new CSS module if needed
+// import styles from './projects.module.css';
 
 export default async function Home() {
   // Fetch projects from Sanity
@@ -94,28 +92,11 @@ export default async function Home() {
             <h2 className="projects-section-header-right">✿</h2>
           </div>
           
+          {/* Use the project grid with natural aspect ratios */}
           <div className="project-grid">
             {productProjects.map(project => (
               <ProjectCard key={project._id} project={project} />
             ))}
-            {//DEBUG
-            /*
-              <Link className="project-card" href="/">
-              <div className="project-image-container">
-                <Image className="project-image" src={Test} alt="Project Image" />
-                <Image className="project-image project-image-hover" src={TestHover} alt="Project Image Hover" />
-              </div>
-              <div className="project-info">
-                <div className="project-title-flex">
-                  <p className="project-title">Volta, Internship</p>
-                  <p>400K+ User Growth</p>
-                </div>
-                <p>Product Design, Identity</p>
-              </div>
-              </Link>
-            */
-            }
-            
           </div>
         </section>
       </div>

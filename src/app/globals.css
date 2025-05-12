@@ -244,6 +244,8 @@ nav {
   filter: blur(4px) !important;
 }
 
+/* In globals.css, replace this section: */
+
 /* ===================================
   5. Media (Images and Videos)
   =================================== */
@@ -256,14 +258,14 @@ nav {
   overflow: hidden;
   transform-origin: center;
   transition: transform 0.3s ease-out;
-  aspect-ratio: 16 / 9; /* Consistent aspect ratio for all media */
+  /* The aspect ratio will now be determined by JS in the component */
 }
 
 /* Image styles */
 .project-image {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* This makes images cover the entire container */
+  object-fit: cover;
   position: absolute;
   top: 0;
   left: 0;
@@ -293,7 +295,7 @@ nav {
 .project-video-player {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Important: makes video cover the container */
+  object-fit: cover;
   border-radius: 16px;
 }
 
@@ -315,7 +317,9 @@ nav {
 .video-container {
   width: 100%;
   height: 100%;
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
   pointer-events: none;
   overflow: hidden;
   border-radius: 16px;
@@ -324,6 +328,14 @@ nav {
 /* Additional hover effect for project cards */
 .project-card:hover .project-image-container {
   transform: scale(0.975);
+}
+
+/* Project grid with natural aspect ratios */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: auto; /* Key change: auto instead of fixed height */
+  gap: 16px;
 }
 
 /* ===================================
@@ -368,8 +380,7 @@ nav {
 }
 
 .project-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  column-count: 2;
   gap: 16px;
 }
 
@@ -381,7 +392,10 @@ nav {
   overflow: hidden;
   background-color: var(--white-100);
   color: var(--black-100);
+  height: auto;
+  align-self: start;
 }
+
 
 .project-card:hover {
   opacity: 1;

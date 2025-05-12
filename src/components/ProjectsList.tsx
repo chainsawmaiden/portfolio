@@ -12,11 +12,15 @@ export default function ProjectsList({ title, projects, type }: ProjectsListProp
     <div className="stacked intro-list-stacked">
       <h3>{title}</h3>
       <div className="stacked intro-list-items">
-        {projects.map((project) => (
-          <Link key={project._id} href={`/${project.slug.current}`}>
-            {project.listTitle}
-          </Link>
-        ))}
+        {projects && projects.length > 0 ? (
+          projects.map((project) => (
+            <Link key={project._id} href={`/${project.slug.current}`}>
+              {project.listTitle}
+            </Link>
+          ))
+        ) : (
+          <p>No projects found</p>
+        )}
       </div>
     </div>
   );

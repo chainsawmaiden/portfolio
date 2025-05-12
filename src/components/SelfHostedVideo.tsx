@@ -56,7 +56,7 @@ export default function SelfHostedVideo({
   }, [src]);
 
   return (
-    <div className="video-container" style={{ pointerEvents: 'none', width: '100%', height: '100%' }}>
+    <div className="video-container">
       <video
         ref={videoRef}
         className={className}
@@ -67,7 +67,15 @@ export default function SelfHostedVideo({
         autoPlay
         disablePictureInPicture
         disableRemotePlayback
-        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+        style={{ 
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%', 
+          height: '100%', 
+          objectFit: 'cover',
+          borderRadius: '16px'
+        }}
       >
         <source src={src} type={type} />
       </video>
