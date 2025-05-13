@@ -1,8 +1,10 @@
 'use client';
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import LoadingAnimation from "./LoadingAnimation";
 
 export default function HomeAnimation() {
+  const [pageLoaded, setPageLoaded] = useState(false);
   // Refs for scroll animation
   const introSectionRef = useRef<HTMLElement | null>(null);
   
@@ -10,6 +12,11 @@ export default function HomeAnimation() {
   useEffect(() => {
     // Get the intro section element
     introSectionRef.current = document.getElementById('intro-section') as HTMLElement;
+    
+    // Wait a bit to set page as loaded
+    const timer = setTimeout(() => {
+      setPageLoaded(true);
+    }, 100);
     
     // Function to handle scroll
     const handleScroll = () => {
@@ -52,8 +59,13 @@ export default function HomeAnimation() {
     // Cleanup
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      clearTimeout(timer);
     };
   }, []);
 
-  return null; // This component doesn't render anything
+  return (
+    <>
+      <LoadingAnimation />
+    </>
+  );
 }

@@ -21,7 +21,7 @@ export default async function Home() {
   
   return (
     <main className="page">
-      {/* Client-side animation logic */}
+      {/* Client-side animation logic - includes both loading animation and scroll effects */}
       <HomeAnimation />
       
       {/* Grid overlay - debug */}
