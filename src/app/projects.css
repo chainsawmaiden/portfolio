@@ -18,14 +18,14 @@
 .projects-section-header {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  gap: 16px;
+  gap: 8px;
   width: 100%;
   color: var(--black-50);
 }
 
 .projects-section-header-left {
   grid-column: span var(--grid-span-side);
-  padding-left: 32px;
+  padding-left: 48px;
 }
 
 .projects-section-header-center {
@@ -35,7 +35,7 @@
 .projects-section-header-right {
   grid-column: span var(--grid-span-side);
   text-align: end;
-  margin-right: 32px;
+  margin-right: 48px;
 }
 
 /* ===================================
@@ -44,7 +44,7 @@
 
 .project-grid {
   column-count: 2;
-  column-gap: 16px;
+  column-gap: 8px;
 }
 
 .three-columns {

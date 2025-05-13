@@ -11,17 +11,20 @@ import ProjectCard from "@/components/ProjectCard";
 import ProjectsList from "@/components/ProjectsList";
 import HomeAnimation from "@/components/HomeAnimation";
 
+import LoadingOverlay from "@/components/LoadingOverlay";
+
 export default async function Home() {
   // Fetch projects from Sanity
   const productProjects = await getProjectsByType('product');
   const craftProjects = await getProjectsByType('craft');
   
   // Show grid overlay for debugging (set to false in production)
-  const showGridOverlay = false;
+  const showGridOverlay = true;
   
   return (
     <main className="page">
       {/* Client-side animation logic */}
+      <LoadingOverlay />
       <HomeAnimation />
       
       {/* Grid overlay - debug */}
