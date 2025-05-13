@@ -1,0 +1,65 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 1;
+  transition: opacity 0.25s ease-out; /* 0.5s fade duration */
+}
+
+.fadeOut {
+  opacity: 0;
+}
+
+.videoContainer {
+  position: relative;
+  width: 256px;
+  height: 256px;
+  padding: 4px;
+  background-color: var(--white-50);
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0; /* Start invisible for fade-in */
+  transition: opacity 0.25s ease-in; /* 0.5s fade-in duration */
+}
+
+.fadeIn {
+  opacity: 1;
+}
+
+.loadingVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+/* Fallback loader */
+.fallbackLoader {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 5px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 1s ease-in-out infinite;
+}
+
+/* Animation keyframes */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

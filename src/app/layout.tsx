@@ -1,8 +1,8 @@
 import "./globals.css";
 import "./projects.css";
 import "./fonts.css";
-
 import type { Metadata } from "next";
+import LoadingOverlay from "@/components/LoadingOverlay";
 
 export const metadata: Metadata = {
   title: "Aditya Das",
@@ -16,7 +16,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        {children}
+      </body>
     </html>
   );
 }
