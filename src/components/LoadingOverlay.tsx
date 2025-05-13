@@ -2,16 +2,18 @@
 
 import { useState, useEffect, useRef } from 'react';
 import styles from './LoadingOverlay.module.css';
+import Image from 'next/image';
 
 export default function LoadingOverlay() {
   const [isLoading, setIsLoading] = useState(true);
   const [isFadingOut, setIsFadingOut] = useState(false);
   const [isVisible, setIsVisible] = useState(false); // For fade-in effect
-  const [videoError, setVideoError] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const minDurationRef = useRef<number>(500); // Minimum 0 seconds display time
+  const [currentImageIndex, setCurrentImageIndex] = useState(0); // To track which image is currently displayed
+  const imagesRef = useRef<string[]>(['/images/loading-1.svg', '/images/loading-2.svg']);
+  const minDurationRef = useRef<number>(250); // Minimum 0.25 seconds display time
   const startTimeRef = useRef<number>(Date.now());
   const readyToHideRef = useRef<boolean>(false);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   // Fade in as soon as component mounts
   useEffect(() => {
@@ -22,6 +24,17 @@ export default function LoadingOverlay() {
     
     // Initially remove the content-visible class
     document.body.classList.remove('content-visible');
+
+    // Start the image alternation interval
+    intervalRef.current = setInterval(() => {
+      setCurrentImageIndex(prev => (prev === 0 ? 1 : 0));
+    }, 150); // Switch every 0.25 seconds
+
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
   }, []);
 
   // Function to check if minimum time has elapsed and content is ready
@@ -33,6 +46,11 @@ export default function LoadingOverlay() {
     if (elapsedTime >= minDurationRef.current && readyToHideRef.current) {
       // Start the fade out process
       setIsFadingOut(true);
+      
+      // Clear the interval when fading out
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
       
       // Remove the component after fade out completes
       setTimeout(() => {
@@ -69,25 +87,13 @@ export default function LoadingOverlay() {
       checkCanHide();
     }, 100);
 
-    // Check if video exists
-    const checkVideo = () => {
-      const videoElement = document.createElement('video');
-      videoElement.src = '/videos/loading-1.mp4';
-      videoElement.onloadeddata = () => {
-        // Video exists, no error
-      };
-      videoElement.onerror = () => {
-        console.error('Loading video not found at /videos/loading.mp4');
-        setVideoError(true);
-      };
-    };
-    
-    checkVideo();
-
     return () => {
       window.removeEventListener('load', handleLoadComplete);
       clearTimeout(fallbackTimer);
       clearInterval(checkInterval);
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
     };
   }, []);
 
@@ -96,35 +102,17 @@ export default function LoadingOverlay() {
 
   return (
     <div className={`${styles.overlay} ${isFadingOut ? styles.fadeOut : ''}`}>
-      <div className={`${styles.videoContainer} ${isVisible ? styles.fadeIn : ''}`}>
-        {!videoError ? (
-          <video
-            ref={videoRef}
-            className={styles.loadingVideo}
-            src="/videos/loading-1.mp4"
-            autoPlay
-            loop={true}
-            muted
-            playsInline
-            onLoadedData={(e) => {
-              // When video metadata is loaded, update the minimum duration if needed
-              if (videoRef.current && videoRef.current.duration) {
-                // Use minimum of 0.75 seconds, but respect actual video length if longer
-                const videoDuration = Math.max(videoRef.current.duration * 1000, 750);
-                minDurationRef.current = videoDuration;
-              }
-            }}
-            onEnded={() => {
-              // When video ends naturally, mark as ready to hide
-              readyToHideRef.current = true;
-              checkCanHide();
-            }}
+      <div className={`${styles.container} ${isVisible ? styles.fadeIn : ''}`}>
+        <div className={styles.imageContainer}>
+          <Image
+            src={imagesRef.current[currentImageIndex]}
+            alt="Loading"
+            width={326}
+            height={326}
+            priority
           />
-        ) : (
-          <div className={styles.fallbackLoader}>
-            <div className={styles.spinner}></div>
-          </div>
-        )}
+        </div>
+        <p className={styles.loadingText}>Loading...</p>
       </div>
     </div>
   );
