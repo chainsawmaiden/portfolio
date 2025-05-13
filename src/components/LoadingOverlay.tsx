@@ -10,13 +10,16 @@ export default function LoadingOverlay() {
   const [isVisible, setIsVisible] = useState(false); // For fade-in effect
   const [currentImageIndex, setCurrentImageIndex] = useState(0); // To track which image is currently displayed
   const imagesRef = useRef<string[]>(['/images/loading-1.svg', '/images/loading-2.svg']);
-  const minDurationRef = useRef<number>(250); // Minimum 0.25 seconds display time
+  const minDurationRef = useRef<number>(750); // Minimum 0.75 seconds display time
   const startTimeRef = useRef<number>(Date.now());
   const readyToHideRef = useRef<boolean>(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   // Fade in as soon as component mounts
   useEffect(() => {
+    // Ensure we start at the top of the page
+    window.scrollTo(0, 0);
+    
     // Small delay before showing to ensure smooth fade-in
     setTimeout(() => {
       setIsVisible(true);
