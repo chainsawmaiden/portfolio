@@ -9,7 +9,7 @@ export default function LoadingOverlay() {
   const [isVisible, setIsVisible] = useState(false); // For fade-in effect
   const [videoError, setVideoError] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const minDurationRef = useRef<number>(1000); // Minimum 0.75 seconds display time
+  const minDurationRef = useRef<number>(500); // Minimum 0 seconds display time
   const startTimeRef = useRef<number>(Date.now());
   const readyToHideRef = useRef<boolean>(false);
 
@@ -19,6 +19,9 @@ export default function LoadingOverlay() {
     setTimeout(() => {
       setIsVisible(true);
     }, 50);
+    
+    // Initially remove the content-visible class
+    document.body.classList.remove('content-visible');
   }, []);
 
   // Function to check if minimum time has elapsed and content is ready
@@ -34,6 +37,9 @@ export default function LoadingOverlay() {
       // Remove the component after fade out completes
       setTimeout(() => {
         setIsLoading(false);
+        
+        // Add the content-visible class to body to trigger main content animations
+        document.body.classList.add('content-visible');
       }, 500); // 0.5 second fade-out duration
     }
   };
@@ -66,12 +72,12 @@ export default function LoadingOverlay() {
     // Check if video exists
     const checkVideo = () => {
       const videoElement = document.createElement('video');
-      videoElement.src = '/videos/rendering.mp4';
+      videoElement.src = '/videos/loading-1.mp4';
       videoElement.onloadeddata = () => {
         // Video exists, no error
       };
       videoElement.onerror = () => {
-        console.error('Loading video not found at /videos/rendering.mp4');
+        console.error('Loading video not found at /videos/loading.mp4');
         setVideoError(true);
       };
     };
@@ -95,7 +101,7 @@ export default function LoadingOverlay() {
           <video
             ref={videoRef}
             className={styles.loadingVideo}
-            src="/videos/rendering.mp4"
+            src="/videos/loading-1.mp4"
             autoPlay
             loop={true}
             muted

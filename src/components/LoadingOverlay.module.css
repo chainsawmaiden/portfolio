@@ -7,9 +7,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 0;
   opacity: 1;
-  transition: opacity 0.25s ease-out; /* 0.5s fade duration */
+  transition: opacity 0.25s ease-out; /* 0.25s fade duration */
 }
 
 .fadeOut {
@@ -18,16 +18,16 @@
 
 .videoContainer {
   position: relative;
-  width: 256px;
-  height: 256px;
+  width: 144px;
+  height: 144px;
   padding: 4px;
-  background-color: var(--white-50);
-  border-radius: 16px;
+  background-color: var(--white-100);
+  border-radius: 18px;
   display: flex;
   justify-content: center;
   align-items: center;
-  opacity: 0; /* Start invisible for fade-in */
-  transition: opacity 0.25s ease-in; /* 0.5s fade-in duration */
+  opacity: 1; /* Start invisible for fade-in */
+  transition: opacity 0.25s ease-in, transform 0.25s ease-in; /* 0.25s fade-in duration */
 }
 
 .fadeIn {

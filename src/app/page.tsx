@@ -10,6 +10,7 @@ import { getProjectsByType } from "@/sanity/lib/projects";
 import ProjectCard from "@/components/ProjectCard";
 import ProjectsList from "@/components/ProjectsList";
 import HomeAnimation from "@/components/HomeAnimation";
+import Noise from "@/components/Noise";
 
 import LoadingOverlay from "@/components/LoadingOverlay";
 
@@ -19,12 +20,13 @@ export default async function Home() {
   const craftProjects = await getProjectsByType('craft');
   
   // Show grid overlay for debugging (set to false in production)
-  const showGridOverlay = true;
+  const showGridOverlay = false;
   
   return (
     <main className="page">
       {/* Client-side animation logic */}
       <LoadingOverlay />
+      <Noise />
       <HomeAnimation />
       
       {/* Grid overlay - debug */}
@@ -36,22 +38,7 @@ export default async function Home() {
         </div>
       )}
       
-      {/* NOISE SVG OVERLAY */}
-      <div className="noise-overlay">
-        <svg id="noise" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
-          <filter id="noise-filter">
-            <feTurbulence type="fractalNoise" baseFrequency=".4" numOctaves="3" stitchTiles="stitch"></feTurbulence>
-            <feColorMatrix type="saturate" values="0"></feColorMatrix>
-            <feComponentTransfer>
-              <feFuncR type="linear" slope="0.5" intercept="0.5"></feFuncR>
-              <feFuncG type="linear" slope="0.5" intercept="0.5"></feFuncG>
-              <feFuncB type="linear" slope="0.5" intercept="0.5"></feFuncB>
-              <feFuncA type="linear" slope="1"></feFuncA>
-            </feComponentTransfer>
-          </filter>
-          <rect width="100%" height="100%" filter="url(#noise-filter)"></rect>
-        </svg>
-      </div>
+      
 
       {/* NAVBAR */}
       <nav>

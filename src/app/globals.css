@@ -129,7 +129,18 @@ nav {
   border-width: 1px;
   backdrop-filter: blur(16px);
   border-radius: 1000px;
-  animation: simpleFadeIn 2s ease;
+  
+  /* Initially hidden, will be shown after loading animation */
+  opacity: 0;
+  transform: translate(0, 16px);
+  transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+  transition-delay: 0.3s; /* Slight delay after loading completes */
+}
+
+/* Make nav visible when content-visible class is added */
+.content-visible nav {
+  opacity: 1;
+  transform: translate(0, 0);
 }
 
 .nav-link {
@@ -220,7 +231,18 @@ nav {
   gap: 0px;
   width: 100%;
   margin-top: 108px;
-  animation: simpleFadeIn 1.5s ease-out;
+  
+  /* Initially hidden, will be shown after loading animation */
+  opacity: 0;
+  transform: translate(0, 32px);
+  transition: opacity 2s ease-out, transform 2s ease-out;
+  transition-delay: 0.5s; /* Slightly more delay than nav for sequence effect */
+}
+
+/* Make hero visible when content-visible class is added */
+.content-visible .hero {
+  opacity: 1;
+  transform: translate(0, 0);
 }
 
 /* ===================================

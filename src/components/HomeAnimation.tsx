@@ -35,7 +35,7 @@ export default function HomeAnimation() {
           }
         } else {
           // Reset styles when back at top
-          introSectionRef.current.style.opacity = '1';
+          // Note: We no longer set opacity to 1 here, as it will be controlled by the content-visible class
           introSectionRef.current.style.filter = 'blur(0px)';
           introSectionRef.current.style.transform = `translate(0px, 0px)`;
           introSectionRef.current.classList.remove('intro-fade-out');
