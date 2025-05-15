@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 
 interface SelfHostedVideoProps {
   src: string;
@@ -16,6 +16,7 @@ export default function SelfHostedVideo({
   posterImage
 }: SelfHostedVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [aspectRatio, setAspectRatio] = useState<number | null>(null);
   
   useEffect(() => {
     // Make sure video is properly loaded and configured
@@ -25,6 +26,20 @@ export default function SelfHostedVideo({
       videoRef.current.playsInline = true;
       videoRef.current.autoplay = true;
       videoRef.current.loop = true;
+      
+      // Listen for metadata loaded to get the actual video dimensions
+      videoRef.current.addEventListener('loadedmetadata', () => {
+        if (videoRef.current) {
+          const videoWidth = videoRef.current.videoWidth;
+          const videoHeight = videoRef.current.videoHeight;
+          
+          if (videoWidth && videoHeight) {
+            const ratio = videoWidth / videoHeight;
+            setAspectRatio(ratio);
+            console.log(`Video aspect ratio: ${ratio} (${videoWidth}x${videoHeight})`);
+          }
+        }
+      });
       
       // Force play (helps on some browsers)
       const playPromise = videoRef.current.play();

@@ -41,6 +41,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   const [isHovering, setIsHovering] = useState(false);
   const [aspectRatio, setAspectRatio] = useState(16/9); // Default aspect ratio
   const containerRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   
   // Get main media
   const mainImage = project.mainImage ? urlFor(project.mainImage).url() : null;
@@ -50,12 +51,52 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   const hoverImage = project.hoverImage ? urlFor(project.hoverImage).url() : null;
   const hoverMedia = project.hoverMedia || null;
   
-  // Update container height based on image aspect ratio
+  // Update container height based on media aspect ratio
   useEffect(() => {
     // Only run this if we're client-side
     if (typeof window === 'undefined') return;
     
     const updateAspectRatio = () => {
+      // Check if we have a video first
+      if (mainMedia && mainMedia.mediaType === 'video' && mainMedia.videoUrl) {
+        // For videos, we need to create a temp video element to get dimensions
+        const video = document.createElement('video');
+        video.style.display = 'none'; // Hide it
+        
+        // When metadata is loaded, we can get the dimensions
+        video.onloadedmetadata = () => {
+          const ratio = video.videoWidth / video.videoHeight;
+          if (ratio > 0) { // Make sure we got valid dimensions
+            setAspectRatio(ratio);
+            
+            // Apply aspect ratio to container
+            if (containerRef.current) {
+              containerRef.current.style.paddingBottom = `${(1/ratio) * 100}%`;
+            }
+          }
+          
+          // Clean up
+          document.body.removeChild(video);
+        };
+        
+        // Handle load error
+        video.onerror = () => {
+          console.error("Error loading video for aspect ratio calculation");
+          document.body.removeChild(video);
+          fallbackToImage(); // Try using image instead
+        };
+        
+        // Add to DOM temporarily and start loading
+        document.body.appendChild(video);
+        video.src = mainMedia.videoUrl;
+        
+      } else {
+        fallbackToImage();
+      }
+    };
+    
+    const fallbackToImage = () => {
+      // Fallback to using image for aspect ratio
       let imageUrl: string | null = null;
       
       // Determine which image to use for aspect ratio calculation
@@ -70,11 +111,13 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         const imgElement = new window.Image(); // Use window.Image to avoid conflict
         imgElement.onload = () => {
           const ratio = imgElement.width / imgElement.height;
-          setAspectRatio(ratio);
-          
-          // Apply aspect ratio to container
-          if (containerRef.current) {
-            containerRef.current.style.paddingBottom = `${(1/ratio) * 100}%`;
+          if (ratio > 0) { // Make sure we got valid dimensions
+            setAspectRatio(ratio);
+            
+            // Apply aspect ratio to container
+            if (containerRef.current) {
+              containerRef.current.style.paddingBottom = `${(1/ratio) * 100}%`;
+            }
           }
         };
         imgElement.src = imageUrl;
@@ -131,7 +174,10 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         const posterUrl = media.videoPoster ? urlFor(media.videoPoster).url() : undefined;
         
         return (
-          <div className={`project-video ${!isMain ? 'project-video-hover' : ''}`}>
+          <div 
+            className={`project-video ${!isMain ? 'project-video-hover' : ''}`}
+            style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+          >
             <SelfHostedVideo
               src={media.videoUrl}
               posterImage={posterUrl}
