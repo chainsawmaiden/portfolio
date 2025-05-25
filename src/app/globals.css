@@ -12,14 +12,16 @@
 
 :root {
   /* Color variables */
-  --white-50: #F8F7F7;
-  --white-100: #F0EFEF;
-  --white-200: #ECE8E7;
-  --black-50: #0D0C0C;
-  --black-100: #424141;
+  --white-50: #FAFAFA;
+  --white-100: #F0f0f0;
+  --white-200: #e5e5e5;
+  --black-50: #0c0C0C;
+  --black-100: #414141;
   
   /* Layout variables */
   --max-width: 1512px;
+  --margin: 48px;
+  --padding-section: 32px;
   --grid-start: 4;
   --grid-span-center: 6;
   --grid-span-side: 3;
@@ -32,11 +34,11 @@ html {
 body {
   min-height: 100%;
   width: 100%;
-  color: var(--white-50);
-  font-family: 'HelveticaNowDisplay', sans-serif;
+  color: var(--black-50);
+  font-family: 'HelveticaNowText', sans-serif;
   font-size: 14px;
   line-height: 1.4;
-  letter-spacing: .12px;
+  letter-spacing: -.39px;
   scroll-behavior: smooth;
   font-weight: 400;
   margin: 0;
@@ -50,7 +52,12 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
+  
+  background: var(--white-50);
+  /*
+  
   background: linear-gradient(0deg, rgb(55, 145, 218) 0%, rgb(23, 28, 171) 100%);
+  */
   z-index: -1;
 }
 
@@ -65,29 +72,32 @@ a:hover {
 
 /* Typography */
 h1 {
-  font-size: 28px;
+  font-family: "HelveticaNowDisplay", Arial, Helvetica, sans-serif;
+  font-size: 26px;
   font-weight: 400;
   line-height: 1.25;
-  letter-spacing: -0.24px;
+  letter-spacing: -0.12px;
 }
 
 h2 {
-  font-size: 28px;
+  font-family: "HelveticaNowDisplay", Arial, Helvetica, sans-serif;
+  font-size: 26px;
   font-weight: 400;
   line-height: 1.25;
-  letter-spacing: -.24px;
+  letter-spacing: -.12px;
 }
 
 h3 {
-  font-size: 18px;
-  font-weight: 500;
+  font-family: "HelveticaNowDisplay", Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
   line-height: 1.5;
-  letter-spacing: 0px;
+  letter-spacing: -.08px;
 }
 
 h4 {
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 360;
   line-height: 1.4;
   letter-spacing: 0px;
 }
@@ -123,9 +133,9 @@ nav {
   display: flex;
   flex-direction: row;
   gap: 32px;
-  background-color: rgba(248, 248, 248, 0.8);
+  background-color: rgba(240, 240, 240, 0.8);
   border-style: solid;
-  border-color: rgba(248, 248, 248, 0.5);
+  border-color: rgba(229, 229, 229, 0.25);
   border-width: 1px;
   backdrop-filter: blur(16px);
   border-radius: 1000px;
@@ -165,7 +175,7 @@ nav {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: 8px;
-  padding: 0 48px;
+  padding: 0 var(--margin);
   pointer-events: none;
   z-index: 10000;
 }
@@ -188,8 +198,8 @@ nav {
   height: 100%;
   pointer-events: none;
   z-index: 0;
-  mix-blend-mode: soft-light;
-  opacity: .66;
+  mix-blend-mode: lighten;
+  opacity: 1;
   overflow: hidden;
 }
 
@@ -250,8 +260,8 @@ nav {
 =================================== */
 
 .intro-section {
-  margin: 0px 48px 196px 48px;
-  top: 196px;
+  margin: 0px var(--margin) 160px var(--margin);
+  top: 160px;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: 8px;
@@ -260,6 +270,30 @@ nav {
   opacity: 1;
   transition: opacity 0.5s ease-out, filter 0.5s ease-out;
   will-change: opacity, filter;
+}
+
+.indent {
+  margin-left: 32px;
+}
+
+.flower-container {
+  height: 0px;
+  width: 0px;
+  margin-bottom: -21px;
+  margin-left: 0px;
+  animation: float 4s infinite;
+  transition: transform ease;
+}
+
+.flower {
+  height: 40px;
+  width: auto;
+}
+
+@keyframes float {
+  0% { transform: translate(0); }
+  50% { transform: translate(0, -3px); }
+  100% { transform: translate(0); }
 }
 
 .intro-content {
@@ -287,7 +321,7 @@ nav {
 }
 
 .intro-list-items {
-  color: var(--white-200);
+  color: var(--black-100);
 }
 
 /* Fade out class applied by JS */

@@ -218,7 +218,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       </div>
       <div className="project-info">
         <div className="project-title-flex">
-          <p className="project-title">{project.title || 'Untitled Project'}</p>
+          <p className="project-title">{project.title || 'Untitled'}</p>
           {project.additionalInfo && (
             <p>{project.additionalInfo}</p>
           )}

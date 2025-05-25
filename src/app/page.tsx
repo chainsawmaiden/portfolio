@@ -2,7 +2,8 @@ import Link from "next/link";
 import { getProjectsByType } from "@/sanity/lib/projects";
 
 //debug
-//import Image from "next/image";
+import Image from "next/image";
+import flower1 from "../../public/images/flower-3.svg";
 //import Test from "../../public/images/test-image-2.png"
 //import TestHover from "../../public/images/test-image-3.png"
 
@@ -13,6 +14,7 @@ import HomeAnimation from "@/components/HomeAnimation";
 import Noise from "@/components/Noise";
 
 import LoadingOverlay from "@/components/LoadingOverlay";
+import Navbar from "@/components/Navbar";
 
 export default async function Home() {
   // Fetch projects from Sanity
@@ -38,28 +40,28 @@ export default async function Home() {
         </div>
       )}
       
-      
+      <Navbar />
 
-      {/* NAVBAR */}
-      <nav>
-        <Link href="/" className="nav-link">Home</Link>
-        <Link href="/product" className="nav-link">Product</Link>
-        <Link href="/craft" className="nav-link">Craft</Link>
-        <Link href="/about" className="nav-link">About</Link>
-        <Link href="/contact" className="nav-link">Contact</Link>
-      </nav>
+      
 
       {/* HERO CONTENT */}
       <div className="hero">
+        
         {/* INTRODUCTION */}
         <section id="intro-section" className="intro-section">
+          
           <div className="intro-content">
+
             <div className="intro-header">
-              <h1>❀ Aditya Das is a multidisciplinary designer and engineer who builds interfaces, websites, brand identities, and more. He is dreaming of a world filled with delight and magic, where all things are created with love.</h1>
+              {/*<div className="flower-icon"><h1>❀</h1></div>*/}
+
+              <div className="flower-container"><Image className="flower" src={flower1} alt="flower" /></div>
+              <h1><span className="indent">A</span>ditya Das is a multidisciplinary designer who specializes in making interfaces, websites, brand identities, and more. He is dreaming of a world filled with delight and magic, where all things are made with love.</h1>
               
               <h1>Currently leading design at Biography. Previously at Sony and Volta. Studying Art and Math at Yale.</h1>
             </div>
 
+            {
             <div className="intro-list-container">
               <ProjectsList 
                 title="Product"
@@ -68,11 +70,14 @@ export default async function Home() {
               />
 
               <ProjectsList 
-                title="Craft"
+                title="Visual"
                 projects={craftProjects}
                 type="craft"
               />
             </div>
+            
+            }
+
           </div>
         </section>
 
@@ -80,7 +85,7 @@ export default async function Home() {
         <section className="projects-section">
           <div className="projects-section-header">
             <h2 className="projects-section-header-left">01</h2>
-            <h2 className="projects-section-header-center">Product</h2>
+            <h2 className="projects-section-header-center">Product Design</h2>
             <h2 className="projects-section-header-right">✿</h2>
           </div>
           
@@ -94,7 +99,7 @@ export default async function Home() {
         <section className="projects-section">
           <div className="projects-section-header">
             <h2 className="projects-section-header-left">02</h2>
-            <h2 className="projects-section-header-center">Craft</h2>
+            <h2 className="projects-section-header-center">Visual Design</h2>
             <h2 className="projects-section-header-right">❁</h2>
           </div>
           
