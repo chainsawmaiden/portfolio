@@ -53,7 +53,7 @@ export default async function Home() {
               <div className="flower-container">
                 <SplineFlower />
               </div>
-              <h1><span className="intro-indent">A</span>ditya Das is a multidisciplinary designer who specializes in making interfaces, websites, brand identities, and more. He is dreaming of a world filled with delight and magic, where all things are made with love.</h1>
+              <h1><span className="intro-indent">Aditya</span> Das is a multidisciplinary designer who specializes in making interfaces, websites, brand identities, and more. He is dreaming of a world filled with delight and magic, where all things are made with love.</h1>
               
               <h1>Currently leading design at Biography. Previously at Sony and Volta. Studying Art and Math at Yale.</h1>
             </div>

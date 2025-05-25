@@ -33,13 +33,6 @@ export default function SplineFlowerAlt() {
   return (
     <div 
       className="spline-flower-container"
-      style={{
-        width: '32px',
-        height: '32px',
-        position: 'relative',
-        //border: '1px solid blue', // Different color to distinguish
-        //backgroundColor: hasError ? 'lightblue' : 'transparent',
-      }}
     >
       {hasError ? (
         <div style={{ fontSize: '10px', color: 'blue' }}>Runtime Error</div>
