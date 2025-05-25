@@ -3,15 +3,14 @@ import { getProjectsByType } from "@/sanity/lib/projects";
 
 //debug
 import Image from "next/image";
-import flower1 from "../../public/images/flower-3.svg";
-//import Test from "../../public/images/test-image-2.png"
-//import TestHover from "../../public/images/test-image-3.png"
+// Remove this line: import flower1 from "../../public/images/flower-3.svg";
 
 // Custom Components
 import ProjectCard from "@/components/ProjectCard";
 import ProjectsList from "@/components/ProjectsList";
 import HomeAnimation from "@/components/HomeAnimation";
 import Noise from "@/components/Noise";
+import SplineFlower from "@/components/SplineFlower"; // Add this importversion
 
 import LoadingOverlay from "@/components/LoadingOverlay";
 import Navbar from "@/components/Navbar";
@@ -42,8 +41,6 @@ export default async function Home() {
       
       <Navbar />
 
-      
-
       {/* HERO CONTENT */}
       <div className="hero">
         
@@ -53,15 +50,14 @@ export default async function Home() {
           <div className="intro-content">
 
             <div className="intro-header">
-              {/*<div className="flower-icon"><h1>❀</h1></div>*/}
-
-              <div className="flower-container"><Image className="flower" src={flower1} alt="flower" /></div>
-              <h1><span className="indent">A</span>ditya Das is a multidisciplinary designer who specializes in making interfaces, websites, brand identities, and more. He is dreaming of a world filled with delight and magic, where all things are made with love.</h1>
+              <div className="flower-container">
+                <SplineFlower />
+              </div>
+              <h1><span className="intro-indent">A</span>ditya Das is a multidisciplinary designer who specializes in making interfaces, websites, brand identities, and more. He is dreaming of a world filled with delight and magic, where all things are made with love.</h1>
               
               <h1>Currently leading design at Biography. Previously at Sony and Volta. Studying Art and Math at Yale.</h1>
             </div>
 
-            {
             <div className="intro-list-container">
               <ProjectsList 
                 title="Product"
@@ -75,8 +71,6 @@ export default async function Home() {
                 type="craft"
               />
             </div>
-            
-            }
 
           </div>
         </section>

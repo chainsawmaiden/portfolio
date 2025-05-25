@@ -272,27 +272,23 @@ nav {
   will-change: opacity, filter;
 }
 
-.indent {
-  margin-left: 32px;
+.intro-indent {
+  margin-left: 33px;
 }
 
 .flower-container {
   height: 0px;
   width: 0px;
-  margin-bottom: -21px;
-  margin-left: 0px;
-  animation: float 4s infinite;
+  margin-bottom: -23px;
+  margin-left: -3px;
+  animation: float 10s infinite;
   transition: transform ease;
-}
-
-.flower {
-  height: 40px;
-  width: auto;
+  filter: brightness(.9) saturate(2);
 }
 
 @keyframes float {
   0% { transform: translate(0); }
-  50% { transform: translate(0, -3px); }
+  50% { transform: translate(0, -1px); }
   100% { transform: translate(0); }
 }
 
