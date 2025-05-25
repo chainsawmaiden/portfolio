@@ -283,7 +283,7 @@ nav {
   height: 0px;
   width: 0px;
   transform: translate(-50%, -50%);
-  filter: brightness(.9) saturate(2);
+  filter: brightness(.84) saturate(2);
   mix-blend-mode: difference;
   pointer-events: none;
   margin-bottom: -24px;
@@ -299,7 +299,7 @@ nav {
 
 
 /*
-.flower-container {
+.flower-container-large {
   aspect-ratio: square;
   position: absolute;
   height: 600px;
@@ -314,7 +314,7 @@ nav {
   pointer-events: none;
 }
 
-.spline-flower-container {
+.spline-flower-container-large {
   width: 100%;
   height: 100%;
   position: relative;

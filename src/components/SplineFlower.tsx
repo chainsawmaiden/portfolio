@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 
 export default function SplineFlowerAlt() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [isLoaded, setIsLoaded] = useState(false);
+  //const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
 
   useEffect(() => {
@@ -19,7 +19,7 @@ export default function SplineFlowerAlt() {
           const app = new Application(canvasRef.current);
           await app.load('https://prod.spline.design/5P9TkCNByo4MlMcm/scene.splinecode');
           console.log('Spline loaded with runtime');
-          setIsLoaded(true);
+          //setIsLoaded(true);
         }
       } catch (error) {
         console.error('Error loading Spline:', error);
@@ -31,11 +31,13 @@ export default function SplineFlowerAlt() {
   }, []);
 
   return (
+    
+    <div className="flower-container">
     <div 
       className="spline-flower-container"
     >
       {hasError ? (
-        <div style={{ fontSize: '10px', color: 'blue' }}>Runtime Error</div>
+        <div style={{ fontSize: '10px', color: 'blue' }}>[flower]</div>
       ) : (
         <canvas 
           ref={canvasRef}
@@ -55,6 +57,7 @@ export default function SplineFlowerAlt() {
       }}>
         {/*isLoaded ? 'Runtime Loaded' : 'Runtime Loading...'*/}
       </div>
+    </div>
     </div>
   );
 }
