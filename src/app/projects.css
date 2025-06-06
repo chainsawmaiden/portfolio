@@ -41,6 +41,10 @@
   margin-right: 48px;
 }
 
+.projects-list-link:hover {
+  color: var(--black-50);
+}
+
 /* ===================================
 2. Project Grid & Cards
 =================================== */
