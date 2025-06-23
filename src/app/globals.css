@@ -297,7 +297,6 @@ nav {
   left: 50%;
   margin-left: -10px;
   transform: translate(-50%, -50%);
-  filter: brightness(.9) saturate(4);
   opacity: 0;
   transition: opacity .3s ease;
   pointer-events: none;
