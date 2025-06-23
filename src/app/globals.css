@@ -281,34 +281,15 @@ nav {
   pointer-events: none;;
 }
 
-.spline-flower-container {
-  width: 800px;
-  height: 600px;
-  position: relative;
-}
-
-/* Large flower container - uncommented and styled */
-.flower-container-large {
-  aspect-ratio: square;
-  position: fixed; /* Changed to fixed for better positioning */
-  height: 600px;
-  width: 600px;
-  top: 50%;
-  left: 50%;
-  margin-left: -10px;
-  transform: translate(-50%, -50%);
-  opacity: 0;
-  transition: opacity .3s ease;
-  pointer-events: none;
-}
-
-.flower-container-large-show {
-  opacity: .5;
-}
-
-.spline-flower-container-large {
+.spline-flower {
   width: 100%;
   height: 100%;
+}
+
+.spline-flower-container {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  height: auto;
   position: relative;
 }
 
