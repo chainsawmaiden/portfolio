@@ -1,5 +1,6 @@
 import "./globals.css";
 import "./projects.css";
+import "./navbar.css";
 import "./fonts.css";
 import type { Metadata } from "next";
 

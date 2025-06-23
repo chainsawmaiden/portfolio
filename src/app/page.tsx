@@ -3,11 +3,9 @@ import { getProjectsByType } from "@/sanity/lib/projects";
 
 //debug
 import Image from "next/image";
-// Remove this line: import flower1 from "../../public/images/flower-3.svg";
 
 // Custom Components
 import ProjectCard from "@/components/ProjectCard";
-import ProjectsList from "@/components/ProjectsList";
 import HomeAnimation from "@/components/HomeAnimation";
 import SplineFlower from "@/components/SplineFlower"; // Add this importversion
 
