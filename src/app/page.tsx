@@ -9,7 +9,6 @@ import Image from "next/image";
 import ProjectCard from "@/components/ProjectCard";
 import ProjectsList from "@/components/ProjectsList";
 import HomeAnimation from "@/components/HomeAnimation";
-import Noise from "@/components/Noise";
 import SplineFlower from "@/components/SplineFlower"; // Add this importversion
 
 import LoadingOverlay from "@/components/LoadingOverlay";
@@ -27,7 +26,6 @@ export default async function Home() {
     <main className="page">
       {/* Client-side animation logic */}
       <LoadingOverlay />
-      <HomeAnimation />
       
       {/* Grid overlay - debug */}
       {showGridOverlay && (
@@ -49,13 +47,11 @@ export default async function Home() {
           <div className="intro-content">
 
             <div className="intro-header">
-              <SplineFlower />
-              
-              <h1>Aditya Das is a multidisciplinary designer who specializes in making interfaces, websites, brand identities, and more. He is dreaming of a world filled with delight and magic, where all things are made with love.</h1>
-              
-              <h1>Currently leading design at Biography. Previously at Sony and Volta. Studying Art and Math at Yale.</h1>
+              <h2 className="h1-subtitle">Aditya Das</h2>
+              <h1 className="h1-title">A designer dreaming towards a world of <br />love, magic, and empathy.</h1>
             </div>
 
+            <SplineFlower />
           </div>
         </section>
 
