@@ -17,7 +17,7 @@ export default function SplineFlowerAlt() {
         
         if (canvasRef.current) {
           const app = new Application(canvasRef.current);
-          await app.load('https://prod.spline.design/5P9TkCNByo4MlMcm/scene.splinecode');
+          await app.load('https://prod.spline.design/E3BeEaHP4XLHK-Oz/scene.splinecode');
           console.log('Spline loaded with runtime');
           //setIsLoaded(true);
         }

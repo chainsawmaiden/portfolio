@@ -21,13 +21,12 @@ export default async function Home() {
   const craftProjects = await getProjectsByType('craft');
   
   // Show grid overlay for debugging (set to false in production)
-  const showGridOverlay = false;
+  const showGridOverlay = true;
   
   return (
     <main className="page">
       {/* Client-side animation logic */}
       <LoadingOverlay />
-      <Noise />
       <HomeAnimation />
       
       {/* Grid overlay - debug */}
@@ -52,23 +51,9 @@ export default async function Home() {
             <div className="intro-header">
               <SplineFlower />
               
-              <h1><span className="intro-indent">Aditya</span> Das is a multidisciplinary designer who specializes in making interfaces, websites, brand identities, and more. He is dreaming of a world filled with delight and magic, where all things are made with love.</h1>
+              <h1>Aditya Das is a multidisciplinary designer who specializes in making interfaces, websites, brand identities, and more. He is dreaming of a world filled with delight and magic, where all things are made with love.</h1>
               
               <h1>Currently leading design at Biography. Previously at Sony and Volta. Studying Art and Math at Yale.</h1>
-            </div>
-
-            <div className="intro-list-container">
-              <ProjectsList 
-                title="Product"
-                projects={productProjects}
-                type="product"
-              />
-
-              <ProjectsList 
-                title="Visual"
-                projects={craftProjects}
-                type="craft"
-              />
             </div>
 
           </div>
@@ -76,28 +61,9 @@ export default async function Home() {
 
         {/* PROJECTS */}
         <section className="projects-section">
-          <div className="projects-section-header">
-            <h2 className="projects-section-header-left">01</h2>
-            <h2 className="projects-section-header-center">Product Design</h2>
-            <h2 className="projects-section-header-right">✿</h2>
-          </div>
           
           <div className="project-grid">
             {productProjects.map(project => (
-              <ProjectCard key={project._id} project={project} />
-            ))}
-          </div>
-        </section>
-
-        <section className="projects-section">
-          <div className="projects-section-header">
-            <h2 className="projects-section-header-left">02</h2>
-            <h2 className="projects-section-header-center">Visual Design</h2>
-            <h2 className="projects-section-header-right">❁</h2>
-          </div>
-          
-          <div className="project-grid three-columns">
-            {craftProjects.map(project => (
               <ProjectCard key={project._id} project={project} />
             ))}
           </div>
