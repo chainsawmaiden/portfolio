@@ -18,7 +18,7 @@ export default async function Home() {
   const craftProjects = await getProjectsByType('craft');
   
   // Show grid overlay for debugging (set to false in production)
-  const showGridOverlay = true;
+  const showGridOverlay = false;
   
   return (
     <main className="page">

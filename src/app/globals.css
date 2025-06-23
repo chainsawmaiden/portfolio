@@ -169,9 +169,9 @@ h2 {
 =================================== */
 
 .intro-section {
-  margin: 0px var(--margin) -64px var(--margin);
+  margin: 0px var(--margin) -80px var(--margin);
   height: 100vh;
-  top: 132px;
+  top: 108px;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: 8px;
@@ -184,9 +184,7 @@ h2 {
 
 
 .spline-flower-container {
-  width: calc(100% + 64px);
-  margin-left: -32px;
-  margin-right: -32px;
+  width: 100%;
   max-height: 80vh;
   aspect-ratio: 3 / 2;
   height: auto;
@@ -236,14 +234,14 @@ h2 {
   grid-column: var(--grid-start) / span var(--grid-span-center);
   display: flex;
   flex-direction: column;
-  gap: 48px;
+  gap: 24px;
 }
 
 .intro-header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: 5px;
   width: 100%;
 }
 

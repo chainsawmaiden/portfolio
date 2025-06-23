@@ -3,8 +3,6 @@
 =================================== */
 
 .projects-section {
-  background-color: var(--white-100);
-  border-radius: 32px;
   margin: 0px calc(var(--margin) - var(--padding-section)) 144px calc(var(--margin) - var(--padding-section));
   padding: 24px var(--padding-section) 32px var(--padding-section);
   display: flex;
@@ -13,9 +11,12 @@
   overflow: hidden;
   position: relative;
   z-index: 1000;
-  border-style: solid;
-  border-color: rgba(229, 229, 229, 0.25);
-  border-width: 1px;
+    border: 1px solid #EAE5E2;
+
+
+  border-radius: 16px;
+  background: rgba(251, 248, 248, 0.90);
+  backdrop-filter: blur(36px);
 }
 
 .projects-section-header {
