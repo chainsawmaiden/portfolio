@@ -1,5 +1,12 @@
 @font-face {
   font-family: 'Diatype';
+  src: url('/fonts/ABCDiatypeEdu-Book.otf') format('opentype');
+  font-weight: 350;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Diatype';
   src: url('/fonts/ABCDiatypeEdu-Regular.otf') format('opentype');
   font-weight: 400;
   font-style: normal;

@@ -3,7 +3,7 @@
 =================================== */
 
 .projects-section {
-  margin: 0px calc(var(--margin) - var(--padding-section)) 144px calc(var(--margin) - var(--padding-section));
+  margin: 0px calc(var(--margin) - var(--padding-section)) 48px calc(var(--margin) - var(--padding-section));
   padding: 24px var(--padding-section) 32px var(--padding-section);
   display: flex;
   flex-direction: column;
@@ -22,7 +22,7 @@
 .projects-section-header {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  gap: 8px;
+  gap: 12px;
   width: 100%;
   color: var(--black-50);
 }
@@ -52,7 +52,7 @@
 
 .project-grid {
   column-count: 2;
-  column-gap: 8px;
+  column-gap: 12px;
 }
 
 .three-columns {
@@ -65,33 +65,43 @@
   flex-direction: column;
   border-radius: 16px;
   overflow: hidden;
-  background-color: var(--white-100);
+  background: #FBF8F8;
   color: var(--black-100);
   height: auto;
   align-self: start;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
   transition: background-color 0.5s ease-out;
 }
 
 .project-card:hover {
-  opacity: 1;
+  background: #FBF8F8;
+  border: 1px solid #FCEDDE;
+  box-shadow: 0 0 8px rgba(252, 237, 222, 0.5);
 }
 
 .project-info {
-  padding: 8px;
+  padding: 12px 12px 20px 12px;
   display: flex;
   justify-content: space-between;
   gap: 24px;
   transition: all .4s ease-out;
 }
 
-.project-title-flex {
+.project-text-container {
   display: flex;
-  gap: 24px;
+  flex-direction: column;
+  gap: 2px;
 }
 
-.project-title {
-  color: var(--black-50);
+.project-subtitle {
+  font-family: "Diatype", Arial, Helvetica, sans-serif;
+  color: #898786;
+  font-size: 21px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.01em;
+  margin-bottom: 0;
 }
 
 /* ===================================
@@ -176,11 +186,7 @@
   transform: scale(0.975);
 }
 
-.project-card:hover {
-  background: var(--white-200);
-}
-
 .project-card:hover .project-info {
-  padding: 8px 16px 8px 16px;
+  padding: 12px 16px 20px 16px;
   transform: translate(0px, -4px);
 }

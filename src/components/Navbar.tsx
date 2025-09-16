@@ -108,11 +108,12 @@ export default function Navbar() {
 
   const handleHomeClick = () => {
     handleSectionChange('home');
-    
     window.scrollTo({ 
       top: 0, 
       behavior: 'smooth' 
     });
+    // Dispatch custom event for HomeAnimation
+    window.dispatchEvent(new Event('home-nav-click'));
   };
 
   return (

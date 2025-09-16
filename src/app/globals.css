@@ -24,6 +24,12 @@
   --grid-start: 4;
   --grid-span-center: 6;
   --grid-span-side: 3;
+
+
+  --text-xl: 28px;
+  --text-l: 21px;
+  --text-m: 18px;
+  --text-s: 14px;
 }
 
 html {
@@ -37,16 +43,16 @@ body {
   font-family: 'Diatype', sans-serif;
   
   color: #8F8D8C;
-  font-size: 12px;
+  font-size: 13px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
   letter-spacing: -.02em;
 
-
   scroll-behavior: smooth;
   margin: 0;
   position: relative;
+  overflow-y: auto;
 }
 
 body::before {
@@ -81,7 +87,7 @@ h1 {
   font-size: 28px;
   font-style: normal;
   font-weight: 400;
-  line-height: normal;
+  line-height: 1.25;
   letter-spacing: -0.02em;
 }
 
@@ -92,9 +98,39 @@ h2 {
 
   font-size: 21px;
   font-style: normal;
+  font-weight: 350;
+  line-height: normal;
+  letter-spacing: 0.005em;
+}
+
+h3 {
+  color: #716F6E;
+  font-family: "Times New Roman", serif;
+  font-size: 18px;
   font-weight: 400;
   line-height: normal;
   letter-spacing: -0.01em;
+  margin: 0;
+}
+
+h6 {
+  color: #8F8D8C;
+  font-family: "Diatype", Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+p {
+  color: #8F8D8C;
+  font-family: "Diatype", Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.02em;
+  margin: 0;
 }
 
 .stacked {
@@ -125,7 +161,7 @@ h2 {
   transform: translate(-50%);
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  gap: 8px;
+  gap: 12px;
   padding: 0 var(--margin);
   pointer-events: none;
   z-index: 10000;
@@ -169,28 +205,27 @@ h2 {
 =================================== */
 
 .intro-section {
-  margin: 0px var(--margin) -80px var(--margin);
-  height: 100vh;
-  top: 108px;
+  margin: 104px var(--margin) 0px var(--margin);
+  height: calc(100vh - 104px); /* Subtract the top margin from viewport height */
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  gap: 8px;
-  position: sticky;
+  gap: 12px;
+  position: relative;
   z-index: 1;
   opacity: 1;
   transition: opacity 0.5s ease-out, filter 0.5s ease-out;
   will-change: opacity, filter;
 }
 
-
 .spline-flower-container {
   width: 100%;
-  max-height: 80vh;
+  max-height: 40vh;
   aspect-ratio: 3 / 2;
   height: auto;
   position: relative;
   
-  min-width: 400px;
+  min-width: 500px;
+  min-height: 333px;
 
   max-width: 1200px;
   max-height: 800px;
@@ -199,14 +234,21 @@ h2 {
 
 }
 
+@media screen and (max-width: 768px) {
+  .spline-flower-container {
+    max-height: 40vh;
+    transform: scale(0.9);
+  }
+}
+
 @media screen and (max-width: 480px) {
   .spline-flower-container {
-    aspect-ratio: 2 / 3;
+    aspect-ratio: 3 / 2;
     width: 100%;
     margin-left: 0;
     margin-right: 0;
+    transform: scale(0.8);
   }
-  
 }
 
 .spline-flower {
@@ -234,14 +276,23 @@ h2 {
   grid-column: var(--grid-start) / span var(--grid-span-center);
   display: flex;
   flex-direction: column;
+  gap: 0px;
+  height: 100%;
+  justify-content: flex-start; /* Changed from space-between to flex-start */
+}
+
+.intro-header-spline-container {
+  display: flex;
+  flex-direction: column;
   gap: 24px;
+  flex-grow: 1; /* This will make the container grow to fill available space */
 }
 
 .intro-header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
+  gap: 4px;
   width: 100%;
 }
 
@@ -249,6 +300,40 @@ h2 {
 .intro-fade-out {
   opacity: 0 !important;
   filter: blur(4px) !important;
+}
+
+/* Down arrow text styles */
+.down-arrow-text {
+  text-align: center;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding-bottom: 32px; /* Add some bottom padding */
+}
+
+.down-arrow-text:hover {
+  opacity: 1;
+  transform: translateY(4px);
+}
+
+.down-arrow-svg {
+  animation: arrowBounce 2s infinite;
+}
+
+@keyframes arrowBounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-8px);
+  }
+  60% {
+    transform: translateY(-4px);
+  }
 }
 
 /* ===================================

@@ -1,6 +1,7 @@
 nav {
-  position: sticky; /* Keep it sticky! */
-  left: 0;
+  position: fixed; /* Fixed at the top of the screen */
+  left: 50%;
+  transform: translateX(-50%); /* Center horizontally */
   margin: 0px auto;
   top: 24px;
   width: fit-content;
@@ -19,11 +20,11 @@ nav {
   
   /* Initially hidden, will be shown after loading animation */
   opacity: 0;
-  transform: translate(0, 16px);
-  transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+  transform: translateX(-50%) translate(0, 16px);
+  transition: opacity 1.5s cubic-bezier(0.68, -0.55, 0.27, 1.55), transform 1.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
   transition-delay: 0.3s;
   
-  /* Sticky elements can also be relative for pseudo-element positioning */
+  /* Fixed elements can also be relative for pseudo-element positioning */
 }
 
 /* Sliding background indicator */
@@ -95,5 +96,5 @@ nav.active-contact::before {
 /* Make nav visible when content-visible class is added */
 .content-visible nav {
   opacity: 1;
-  transform: translate(0, 0);
+  transform: translateX(-50%) translate(0, 0);
 }

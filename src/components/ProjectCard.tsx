@@ -12,11 +12,10 @@ interface ProjectCardProps {
   project: {
     _id: string;
     title: string;
-    listTitle: string;
+    displayTitle: string;
     slug: { current: string };
     projectType: 'product' | 'craft';
-    skills: string;
-    additionalInfo?: string;
+    info?: string;
     mainImage?: any;
     hoverImage?: any;
     mainMedia?: {
@@ -217,13 +216,12 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         {renderMedia(hoverMedia, false)}
       </div>
       <div className="project-info">
-        <div className="project-title-flex">
-          <p className="project-title">{project.title || 'Untitled'}</p>
-          {project.additionalInfo && (
-            <p>{project.additionalInfo}</p>
+        <div className="project-text-container">
+          <h6>{project.displayTitle || 'Untitled'}</h6>
+          {project.info && (
+            <h3>{project.info}</h3>
           )}
         </div>
-        <p>{project.skills || ''}</p>
       </div>
     </Link>
   );
