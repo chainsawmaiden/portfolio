@@ -9,14 +9,14 @@ export default defineType({
     defineField({
       name: 'title',
       title: 'Project Title',
-      description: 'Title of the project as shown in the project card (e.g., "Volta, Internship")',
+      description: 'The actual project title (e.g., "Volta")',
       type: 'string',
       validation: Rule => Rule.required()
     }),
     defineField({
-      name: 'listTitle',
-      title: 'List Title',
-      description: 'Shorter title shown in the sidebar list (e.g., "Volta")',
+      name: 'displayTitle',
+      title: 'Display Title',
+      description: 'Title shown on the project card (e.g., "Volta, Internship")',
       type: 'string',
       validation: Rule => Rule.required()
     }),
@@ -26,7 +26,7 @@ export default defineType({
       description: 'URL path for this project (e.g., "volta" for /volta)',
       type: 'slug',
       options: {
-        source: 'listTitle',
+        source: 'title',
         maxLength: 96,
       },
       validation: Rule => Rule.required()
@@ -45,16 +45,9 @@ export default defineType({
       validation: Rule => Rule.required()
     }),
     defineField({
-      name: 'skills',
-      title: 'Skills',
-      description: 'Skills/disciplines used in this project (e.g., "Product Design, Identity")',
-      type: 'string',
-      validation: Rule => Rule.required()
-    }),
-    defineField({
-      name: 'additionalInfo',
-      title: 'Additional Information',
-      description: 'Optional additional info (e.g., "400K+ User Growth" or "$1M funding raised")',
+      name: 'info',
+      title: 'Info',
+      description: 'A short sentence about the project',
       type: 'string',
     }),
     // Main media - can be either image, youtube, or self-hosted video

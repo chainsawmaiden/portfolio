@@ -6,11 +6,10 @@ import { urlFor } from './image'
 export interface Project {
   _id: string;
   title: string;
-  listTitle: string;
+  displayTitle: string;
   slug: { current: string };
   projectType: 'product' | 'craft';
-  skills: string;
-  additionalInfo?: string;
+  info?: string;
   // Legacy fields
   mainImage?: any;
   hoverImage?: any;
@@ -44,11 +43,10 @@ export async function getAllProjects(): Promise<Project[]> {
     *[_type == "project"] | order(projectType asc, order asc) {
       _id,
       title,
-      listTitle,
+      displayTitle,
       slug,
       projectType,
-      skills,
-      additionalInfo,
+      info,
       mainImage,
       hoverImage,
       mainMedia,
@@ -79,11 +77,10 @@ export async function getProjectsByType(type: 'product' | 'craft'): Promise<Proj
     *[_type == "project" && projectType == $type] | order(order asc) {
       _id,
       title,
-      listTitle,
+      displayTitle,
       slug,
       projectType,
-      skills,
-      additionalInfo,
+      info,
       mainImage,
       hoverImage,
       mainMedia,
@@ -114,11 +111,10 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
     *[_type == "project" && slug.current == $slug] {
       _id,
       title,
-      listTitle,
+      displayTitle,
       slug,
       projectType,
-      skills,
-      additionalInfo,
+      info,
       mainImage,
       hoverImage,
       mainMedia,
