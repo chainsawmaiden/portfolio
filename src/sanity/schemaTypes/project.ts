@@ -1,0 +1,170 @@
+import { defineField, defineType } from 'sanity'
+
+export default defineType({
+  name: 'project',
+  title: 'Project',
+  type: 'document',
+
+  fields: [
+    defineField({
+      name: 'title',
+      title: 'Title',
+      description: 'Project title',
+      type: 'string',
+      initialValue: 'Title',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'subtitle',
+      title: 'Subtitle',
+      description: 'Brief summary of project, for displaying on the homepage',
+      type: 'string',
+      initialValue: 'Subtitle',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'year',
+      title: 'Year',
+      description: 'Year of project',
+      type: 'string',
+      initialValue: '2025',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'type',
+      title: 'Type',
+      description: 'Type of project',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Product', value: 'product' },
+          { title: 'Visual', value: 'visual' },
+        ],
+        layout: 'radio',
+      },
+      initialValue: 'product',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'displayMedia',
+      title: 'Display Media',
+      description: 'Standard display image for the project. Appears for homepage, thumbnails, etc.',
+      type: 'array',
+      of: [
+        {
+          type: 'image',
+          options: {
+            hotspot: true,
+            metadata: ['lqip'],
+          },
+        },
+        {
+          type: 'mux.video',
+        }
+      ],
+      validation: (Rule) => Rule.required().max(1).min(1),
+    }),
+    defineField({
+      name: 'hoverMedia',
+      title: 'Hover Media',
+      description: 'Media that appears when user is hovering over the project on the homepage',
+      type: 'array',
+      of: [
+        {
+          type: 'image',
+          options: {
+            hotspot: true,
+            metadata: ['lqip'],
+          },
+        },
+        {
+          type: 'mux.video',
+        }
+      ],
+      validation: (Rule) => Rule.required().max(1).min(1),
+    }),
+    defineField({
+      name: 'disciplines',
+      title: 'Disciplines',
+      description: 'Specs of the project, i.e. "Product Design", "Identity", etc.',
+      type: 'array',
+      of: [
+        {
+          type: 'string',
+        }
+      ],
+      initialValue: ['Product Design', 'Identity'],
+    }),
+    defineField({
+      name: 'team',
+      title: 'Team',
+      description: 'Team members of the project, i.e. "Person 1", "Person 2", etc.',
+      type: 'array',
+      of: [
+        {
+          type: 'string',
+        }
+      ],
+      initialValue: ['Person 1', 'Person 2'],
+    }),
+    defineField({
+      name: 'timeline',
+      title: 'Timeline',
+      description: 'Timeline of project, in format "# months, [month]–[month] year"',
+      type: 'string',
+    }),
+    defineField({
+      name: 'accentPrimary',
+      title: 'Accent Primary',
+      description: 'Primary accent color for the project, used for symbols, sticker navs, etc.',
+      type: 'color',
+      initialValue: {
+        _type: 'color',
+        hex: '#FFFFFF',
+      },
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'accentSecondary',
+      title: 'Accent Secondary',
+      description: 'Secondary accent color for the project, appears over primary color',
+      type: 'color',
+      initialValue: {
+        _type: 'color',
+        hex: '#000000',
+      },
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'symbol',
+      title: 'Symbol',
+      description: 'Symbol associated with the project',
+      type: 'string',
+      validation: (Rule) => Rule.length(1),
+    }),
+    defineField({
+      name: 'content',
+      title: 'Content',
+      description: 'Content of project',
+      type: 'array',
+      of: [
+        {type: 'block'}
+      ],
+    }),
+  ],
+  preview: {
+    select: {
+      title: 'title',
+      subtitle: 'year',
+      media: 'displayMedia.0.asset',
+    },
+    prepare(selection) {
+      const { title, subtitle, media } = selection
+      return {
+        title,
+        subtitle,
+        media: media || undefined,
+      }
+    },
+  }
+})
