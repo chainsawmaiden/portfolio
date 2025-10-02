@@ -118,9 +118,8 @@ export default defineType({
       title: 'Accent Primary',
       description: 'Primary accent color for the project, used for symbols, sticker navs, etc.',
       type: 'color',
-      initialValue: {
-        _type: 'color',
-        hex: '#FFFFFF',
+      options: {
+        disableAlpha: true,
       },
       validation: (Rule) => Rule.required(),
     }),
@@ -129,9 +128,8 @@ export default defineType({
       title: 'Accent Secondary',
       description: 'Secondary accent color for the project, appears over primary color',
       type: 'color',
-      initialValue: {
-        _type: 'color',
-        hex: '#000000',
+      options: {
+        disableAlpha: true,
       },
       validation: (Rule) => Rule.required(),
     }),
