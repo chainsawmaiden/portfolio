@@ -1,18 +1,19 @@
 import { defineField, defineType } from 'sanity'
 
 export default defineType({
-  name: 'mediaCarousel',
-  title: 'Media Carousel',
-  type: 'object',
+  name: 'mediaGallery',
+  title: 'Media Gallery',
+  type: 'document',
   fields: [
     defineField({
       name: 'media',
       title: 'Media',
       type: 'array',
       of: [
-        { type: 'media' }
+        { type: 'media' },
+        { type: 'galleryMediaDouble' },
       ],
-      validation: (Rule) => Rule.required().min(1),
+      validation: (Rule) => Rule.min(1),
     }),
   ],
   preview: {
@@ -23,7 +24,7 @@ export default defineType({
     prepare({ media, firstAsset }) {
       const itemCount = media?.length || 0
       return {
-        title: 'Media Carousel',
+        title: 'Media Gallery',
         subtitle: `${itemCount} item${itemCount !== 1 ? 's' : ''}`,
         media: firstAsset?._type === 'image' ? firstAsset : firstAsset?.asset,
       }

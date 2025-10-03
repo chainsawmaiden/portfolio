@@ -21,6 +21,7 @@ export default defineType({
         { type: 'articleMediaDouble' },
         { type: 'articleTextMediaSingle' },
         { type: 'articleTextMediaDouble' },
+        { type: 'quote' },
       ],
       validation: (Rule) => Rule.min(1),
     })

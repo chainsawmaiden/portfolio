@@ -17,9 +17,10 @@ export default defineType({
       title: 'Content',
       type: 'array',
       of: [
-        { type: 'media' },
-        { type: 'galleryMediaDouble' },
+        { type: 'mediaGallery' },
         { type: 'textBlock' },
+        { type: 'mediaCarousel' },
+        { type: 'quote' },
       ],
     }),
   ],
