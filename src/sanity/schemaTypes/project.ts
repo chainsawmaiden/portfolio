@@ -191,15 +191,26 @@ export default defineType({
     select: {
       title: 'title',
       subtitle: 'year',
-      media: 'displayMedia.0.asset',
+      displayMedia: 'displayMedia',
     },
     prepare(selection) {
-      const { title, subtitle, media } = selection
+      const { title, subtitle, displayMedia } = selection
+      const media = displayMedia?.[0]
+      
+      // For images, use the asset directly
+      if (media?._type === 'image') {
+        return {
+          title,
+          subtitle,
+          media: media,
+        }
+      }
+      
       return {
         title,
         subtitle,
-        media: media || media?.asset,
+        media: media.asset,
       }
     },
-  }
+  },
 })
