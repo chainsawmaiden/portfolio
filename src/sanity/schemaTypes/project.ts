@@ -84,6 +84,32 @@ export default defineType({
       validation: (Rule) => Rule.required().max(1).min(1),
     }),
     defineField({
+      name: 'fullscreenMedia',
+      title: 'Fullscreen Media',
+      description: 'Optional fullscreen hero media for project page',
+      type: 'array',
+      of: [
+        {
+          type: 'image',
+          options: {
+            hotspot: true,
+            metadata: ['lqip'],
+          },
+        },
+        {
+          type: 'mux.video',
+        }
+      ],
+      validation: (Rule) => Rule.max(1),
+    }),
+    defineField({
+      name: 'titleBlock',
+      title: 'Title Block',
+      description: 'Title block for project page',
+      type: 'titleBlock',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
       name: 'disciplines',
       title: 'Disciplines',
       description: 'Specs of the project, i.e. "Product Design", "Identity", etc.',

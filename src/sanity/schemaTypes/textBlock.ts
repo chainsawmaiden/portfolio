@@ -15,8 +15,8 @@ export default defineType({
           type: 'block',
           styles: [
             { title: 'Normal', value: 'normal' },
-            { title: 'Large heading', value: 'h2' },
-            { title: 'Small Heading', value: 'h3' },
+            { title: 'H2', value: 'h2' },
+            { title: 'H3', value: 'h3' },
           ],
           lists: [
             { title: 'Bulleted', value: 'bullet' },

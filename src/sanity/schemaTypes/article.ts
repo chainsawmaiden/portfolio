@@ -1,4 +1,3 @@
-import { Rubik_Lines } from 'next/font/google'
 import { defineField, defineType } from 'sanity'
 
 export default defineType({
@@ -14,17 +13,6 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'fullscreenMedia',
-      title: 'Fullscreen Media (optional)',
-      type: 'media',
-    }),
-    defineField({
-      name: 'titleBlock',
-      title: 'Title Block',
-      type: 'titleBlock',
-      validation: (Rule) => Rule.required(),
-    }),
-    defineField({
       name: 'content',
       title: 'Content',
       type: 'array',
@@ -37,15 +25,12 @@ export default defineType({
     select: {
       title: 'title',
       content: 'content',
-      fullscreenMedia: 'fullscreenMedia.asset.0',
-      
     },
-    prepare({ title, content, fullscreenMedia }) {
+    prepare({ title, content }) {
       const sectionCount = content?.length || 0
       return {
         title: title,
         subtitle: `${sectionCount} section${sectionCount !== 1 ? 's' : ''}`,
-        media: fullscreenMedia?._type === 'image' ? fullscreenMedia : fullscreenMedia?.asset,
       }
     }
   }
