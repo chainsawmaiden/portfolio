@@ -18,6 +18,7 @@ export default defineType({
       of: [
         { type: 'articleMediaSingle' },
         { type: 'articleMediaDouble' },
+        { type: 'textBlock' },
 
       ],
       validation: (Rule) => Rule.min(1),
