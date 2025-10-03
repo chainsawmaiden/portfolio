@@ -16,10 +16,11 @@ export default defineType({
       title: 'Content',
       type: 'array',
       of: [
+        { type: 'textBlock' },
         { type: 'articleMediaSingle' },
         { type: 'articleMediaDouble' },
-        { type: 'textBlock' },
-
+        { type: 'articleTextMediaSingle' },
+        { type: 'articleTextMediaDouble' },
       ],
       validation: (Rule) => Rule.min(1),
     })

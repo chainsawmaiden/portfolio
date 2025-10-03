@@ -2,6 +2,8 @@ import { type SchemaTypeDefinition } from 'sanity'
 import articleMediaSingle from './articleMediaSingle'
 import articleMediaDouble from './articleMediaDouble'
 import articleSection from './articleSection'
+import articleTextMediaDouble from './articleTextMediaDouble'
+import articleTextMediaSingle from './articleTextMediaSingle'
 import article from './article'
 import gallery from './gallery'
 import galleryMediaDouble from './galleryMediaDouble'
@@ -16,6 +18,8 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     articleMediaSingle,
     articleMediaDouble,
     articleSection,
+    articleTextMediaDouble,
+    articleTextMediaSingle,
     gallery,
     galleryMediaDouble,
     media,
