@@ -30,6 +30,7 @@ export default defineType({
       of: [
         { type: 'media' },
         { type: 'galleryMediaDouble' },
+        { type: 'textBlock' },
       ],
     }),
   ],
