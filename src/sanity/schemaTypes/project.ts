@@ -161,7 +161,7 @@ export default defineType({
       return {
         title,
         subtitle,
-        media: media || undefined,
+        media: media || media?.asset,
       }
     },
   }
