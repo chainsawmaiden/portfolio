@@ -30,7 +30,7 @@ export default defineType({
       asset1: 'mediaFirst.asset.0',
     },
     prepare({ text, asset1, }) {
-      const textPreview = text?.[0]?.children?.map((c: any) => c.text).join('').slice(0, 50) || 'No text'
+      const textPreview = text?.[0]?.children?.map((c: { text: string }) => c.text).join('').slice(0, 50) || 'No text'
 
       return {
         title: 'Text + Double Media',

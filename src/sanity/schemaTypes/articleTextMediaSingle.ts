@@ -40,7 +40,7 @@ export default defineType({
       mediaSize: 'mediaSize',
     },
     prepare({ text, asset, mediaSize }) {
-      const textPreview = text?.[0]?.children?.map((c: any) => c.text).join('').slice(0, 50) || 'No text'
+      const textPreview = text?.[0]?.children?.map((c: { text: string }) => c.text).join('').slice(0, 50) || 'No text'
       
       return {
         title: `Text + Media${mediaSize === 'small' && ' (Small)'}`,

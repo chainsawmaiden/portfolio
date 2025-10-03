@@ -42,7 +42,7 @@ export default defineType({
       caption2: 'mediaSecond.caption',
       layout: 'layout',
     },
-    prepare({ asset1, caption1, asset2, caption2, layout }) {
+    prepare({ asset1, caption1, layout }) {
       const layoutLabels = {
         smallLarge: 'Small, Large',
         mediumMedium: 'Medium, Medium',
@@ -50,12 +50,11 @@ export default defineType({
       }
       
       const caption1Text = caption1?.[0]?.children?.[0]?.text || 'No caption'
-      const caption2Text = caption1?.[0]?.children?.[0]?.text || 'No caption'
 
       
       return {
         title: `Double Media - ${layoutLabels[layout as keyof typeof layoutLabels] || layout}`,
-        subtitle: `${caption1Text} + ${caption2Text}`,
+        subtitle: caption1Text,
         media: asset1?._type === 'image' ? asset1 : asset1?.asset,
       }
     }

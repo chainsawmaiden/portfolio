@@ -109,8 +109,8 @@ export default defineType({
     },
     prepare(selection) {
       const { titleBlocks, subtitleBlocks, media } = selection
-      const title = titleBlocks?.[0]?.children?.map((c: any) => c.text).join('') || 'Untitled'
-      const subtitle = subtitleBlocks?.[0]?.children?.map((c: any) => c.text).join('') || undefined
+      const title = titleBlocks?.[0]?.children?.map((c: { text: string }) => c.text).join('') || 'Untitled'
+      const subtitle = subtitleBlocks?.[0]?.children?.map((c: { text: string }) => c.text).join('') || undefined
       return {
         title,
         subtitle,

@@ -37,7 +37,7 @@ export default defineType({
       attribution: 'attribution',
     },
     prepare({ quote, attribution }) {
-      const quoteText = quote?.[0]?.children?.map((c: any) => c.text).join('').slice(0, 100) || 'No quote'
+      const quoteText = quote?.[0]?.children?.map((c: { text: string }) => c.text).join('').slice(0, 100) || 'No quote'
       return {
         title: `"${quoteText}${quoteText.length >= 100 ? '...' : ''}"`,
         subtitle: attribution || 'No attribution',
