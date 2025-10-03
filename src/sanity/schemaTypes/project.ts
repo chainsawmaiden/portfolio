@@ -141,14 +141,24 @@ export default defineType({
       validation: (Rule) => Rule.length(1),
     }),
     defineField({
-      name: 'content',
-      title: 'Content',
-      description: 'Content of project',
-      type: 'array',
-      of: [
-        {type: 'articleMediaSingle'},
-        {type: 'articleMediaDouble'},
-      ],
+      name: 'article',
+      title: 'Article',
+      type: 'reference',
+      to: [{ type: 'article' }],
+      hidden: ({ document }) => document?.type !== 'product',
+      validation: (Rule) => Rule.custom((value, context) => {
+        return context.document?.type !== 'product' || value ? true : 'Required for Product projects'
+      }),
+    }),
+    defineField({
+      name: 'gallery',
+      title: 'Gallery',
+      type: 'reference',
+      to: [{ type: 'gallery' }],
+      hidden: ({ document }) => document?.type !== 'visual',
+      validation: (Rule) => Rule.custom((value, context) => {
+        return context.document?.type !== 'visual' || value ? true : 'Required for Visual projects'
+      }),
     }),
   ],
   preview: {

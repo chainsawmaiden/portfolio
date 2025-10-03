@@ -1,16 +1,15 @@
-import { Rubik_Lines } from 'next/font/google'
 import { defineField, defineType } from 'sanity'
 
 export default defineType({
-  name: 'article',
-  title: 'Article',
+  name: 'gallery',
+  title: 'Gallery',
   type: 'document',
   fields: [
     defineField({
       name: 'title',
       title: 'Title',
       type: 'string',
-      initialValue: 'Untitled Article',
+      initialValue: 'Untitled Gallery',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
@@ -29,7 +28,8 @@ export default defineType({
       title: 'Content',
       type: 'array',
       of: [
-        { type: 'articleSection' }
+        { type: 'media' },
+        { type: 'galleryMediaDouble' },
       ],
     }),
   ],
@@ -41,10 +41,10 @@ export default defineType({
       
     },
     prepare({ title, content, fullscreenMedia }) {
-      const sectionCount = content?.length || 0
+      const contentCount = content?.length || 0
       return {
         title: title,
-        subtitle: `${sectionCount} section${sectionCount !== 1 ? 's' : ''}`,
+        subtitle: `${contentCount} section${contentCount !== 1 ? 's' : ''}`,
         media: fullscreenMedia?._type === 'image' ? fullscreenMedia : fullscreenMedia?.asset,
       }
     }
