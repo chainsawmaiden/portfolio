@@ -67,6 +67,12 @@ export default defineType({
         }
       ]
     }),
+    defineField({
+      name: 'alternateCaptionTitle',
+      title: 'Alternate Caption Title',
+      description: 'Alternate caption title (optional)',
+      type: 'string'
+    })
   ],
   preview: {
     select: {
