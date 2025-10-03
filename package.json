@@ -12,6 +12,7 @@
     "@sanity/color-input": "^4.0.6",
     "@sanity/image-url": "^1.2.0",
     "@sanity/vision": "^4.10.2",
+    "@splinetool/viewer": "^1.10.74",
     "next": "15.5.4",
     "next-sanity": "^11.4.2",
     "react": "19.1.0",
