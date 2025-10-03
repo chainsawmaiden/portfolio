@@ -12,7 +12,7 @@ import project from './project'
 import quote from './quote'
 import textBlock from './textBlock'
 import titleBlock from './titleBlock'
-import mediaGallery from './mediaGallery'
+import galleryMediaGrid from './galleryMediaGrid'
 import mediaCarousel from './mediaCarousel'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
@@ -27,7 +27,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     galleryMediaDouble,
     media,
     mediaCarousel,
-    mediaGallery,
+    galleryMediaGrid,
     project,
     quote,
     textBlock,

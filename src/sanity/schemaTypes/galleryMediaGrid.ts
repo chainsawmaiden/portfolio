@@ -1,9 +1,9 @@
 import { defineField, defineType } from 'sanity'
 
 export default defineType({
-  name: 'mediaGallery',
-  title: 'Media Gallery',
-  type: 'document',
+  name: 'galleryMediaGrid',
+  title: 'Gallery Media Grid',
+  type: 'object',
   fields: [
     defineField({
       name: 'media',
@@ -13,7 +13,7 @@ export default defineType({
         { type: 'media' },
         { type: 'galleryMediaDouble' },
       ],
-      validation: (Rule) => Rule.min(1),
+      validation: (Rule) => Rule.required().min(1),
     }),
   ],
   preview: {
@@ -24,7 +24,7 @@ export default defineType({
     prepare({ media, firstAsset }) {
       const itemCount = media?.length || 0
       return {
-        title: 'Media Gallery',
+        title: 'Media Grid',
         subtitle: `${itemCount} item${itemCount !== 1 ? 's' : ''}`,
         media: firstAsset?._type === 'image' ? firstAsset : firstAsset?.asset,
       }
