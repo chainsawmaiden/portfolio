@@ -146,7 +146,8 @@ export default defineType({
       description: 'Content of project',
       type: 'array',
       of: [
-        {type: 'articleMediaSingle'}
+        {type: 'articleMediaSingle'},
+        {type: 'articleMediaDouble'},
       ],
     }),
   ],

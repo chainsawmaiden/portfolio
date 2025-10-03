@@ -8,47 +8,48 @@ export default defineType({
     defineField({
       name: 'media',
       title: 'Media',
-      type: 'object',
-      fields: [
-        defineField({
-          name: 'media',
-          title: 'Media',
-          type: 'media',
-          validation: (Rule) => Rule.required(),
-        }),
-        defineField({
-          name: 'size',
-          title: 'Size',
-          description: 'Image size. Small = 6 columns, Medium = 8 columns, Large = 10 columns, Extra large = 12 columns.',
-          type: 'string',
-          options: {
-            list: [
-              { title: 'Small', value: 's' },
-              { title: 'Medium', value: 'm' },
-              { title: 'Large', value: 'l' },
-              { title: 'Extra Large', value: 'xl' },
-            ],
-            layout: 'radio',
-          },
-          initialValue: 's',
-          validation: (Rule) => Rule.required(),
-        }),
-      ],
-      preview: {
-        select: {
-          media: 'media',
-          size: 'size',
-        },
-        prepare({ media, size }) {
-          const sizeLabels = { s: 'Small', m: 'Medium', l: 'Large', xl: 'Extra Large', }
-          const caption = media?.caption?.[0] || 'No caption'
-          return {
-            title: caption,
-            subtitle: `Single Media - ${sizeLabels[size as keyof typeof sizeLabels] || size}`,
-            media: media?.asset?.[0],
-          }
-        }
+      type: 'media',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'size',
+      title: 'Size',
+      description: 'Image size. Small = 6 columns, Medium = 8 columns, Large = 10 columns, Extra large = 12 columns.',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Small', value: 's' },
+          { title: 'Medium', value: 'm' },
+          { title: 'Large', value: 'l' },
+          { title: 'Extra Large', value: 'xl' },
+        ],
+        layout: 'radio',
+      },
+      initialValue: 'xl',
+      validation: (Rule) => Rule.required(),
+    }),
+  ],
+  preview: {
+    select: {
+      asset: 'media.asset',
+      caption: 'media.caption',
+      size: 'size',
+    },
+    prepare({ asset, caption, size }) {
+      const sizeLabels = { 
+        s: 'Small', 
+        m: 'Medium', 
+        l: 'Large', 
+        xl: 'Extra Large' 
       }
-    })
-  ]
+      
+      const captionText = caption?.[0]?.children?.[0]?.text || 'No caption'
+      
+      return {
+        title: `Single Media - ${sizeLabels[size as keyof typeof sizeLabels] || size}`,
+        subtitle: captionText,
+        media: asset?.[0]._type === 'image' ? asset[0] : asset?.[0].asset,
+      }
+    }
+  }
 })
