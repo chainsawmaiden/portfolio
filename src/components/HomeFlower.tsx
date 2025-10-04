@@ -29,8 +29,8 @@ export default function HomeFlower() {
   return (
     <div 
       ref={viewerRef}
-      className="w-screen h-screen overflow-hidden"
-      style={{ width: '100vw', height: '100vh' }}
+      className="w-full h-screen overflow-hidden pointer-events-none"
+      style={{ width: '100%', height: '100vh' }}
     />
   )
 }

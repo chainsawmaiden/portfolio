@@ -14,6 +14,7 @@ import textBlock from './textBlock'
 import titleBlock from './titleBlock'
 import galleryMediaGrid from './galleryMediaGrid'
 import mediaCarousel from './mediaCarousel'
+import photoGallery from './photoGallery'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -25,9 +26,10 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     articleTextMediaSingle,
     gallery,
     galleryMediaDouble,
+    galleryMediaGrid,
     media,
     mediaCarousel,
-    galleryMediaGrid,
+    photoGallery,
     project,
     quote,
     textBlock,
