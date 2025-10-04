@@ -1,10 +1,10 @@
 import HomeFlower from "@/components/HomeFlower";
 
-export default function Home() {
+export default async function Home() {
   return (
     <main>
       <HomeFlower />
-      hellooooo
+      hellooooo test test test
     </main>
   );
 }

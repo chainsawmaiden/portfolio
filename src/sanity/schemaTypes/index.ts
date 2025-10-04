@@ -14,7 +14,8 @@ import textBlock from './textBlock'
 import titleBlock from './titleBlock'
 import galleryMediaGrid from './galleryMediaGrid'
 import mediaCarousel from './mediaCarousel'
-import photoGallery from './photoGallery'
+import playlist from './playlist'
+import playlistSong from './playlistSong'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -29,7 +30,8 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     galleryMediaGrid,
     media,
     mediaCarousel,
-    photoGallery,
+    playlist,
+    playlistSong,
     project,
     quote,
     textBlock,
